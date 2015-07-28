@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WdO-lp-LZF"/>
+                        <viewControllerLayoutGuide type="bottom" id="07E-Fq-6SL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K3a-05-Jmv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z3H-Qp-Ia5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUt-CZ-a5d">
+                                <rect key="frame" x="40" y="524" width="520" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NEV-vx-QRi">
+                                <rect key="frame" x="40" y="335" width="520" height="159"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EUt-CZ-a5d" firstAttribute="leading" secondItem="NEV-vx-QRi" secondAttribute="leading" id="5VJ-gB-8oN"/>
+                            <constraint firstItem="07E-Fq-6SL" firstAttribute="top" secondItem="NEV-vx-QRi" secondAttribute="bottom" constant="106" id="8Zh-RC-Jaw"/>
+                            <constraint firstAttribute="trailing" secondItem="NEV-vx-QRi" secondAttribute="trailing" constant="40" id="DB5-xa-iog"/>
+                            <constraint firstItem="z3H-Qp-Ia5" firstAttribute="top" secondItem="K3a-05-Jmv" secondAttribute="topMargin" id="DQh-lN-Wd3"/>
+                            <constraint firstItem="z3H-Qp-Ia5" firstAttribute="leading" secondItem="K3a-05-Jmv" secondAttribute="leadingMargin" constant="-16" id="L3B-Cy-dhG"/>
+                            <constraint firstItem="NEV-vx-QRi" firstAttribute="top" secondItem="WdO-lp-LZF" secondAttribute="bottom" constant="315" id="Mwv-BJ-dcK"/>
+                            <constraint firstItem="EUt-CZ-a5d" firstAttribute="top" secondItem="NEV-vx-QRi" secondAttribute="bottom" constant="30" id="Wsd-oN-Erf"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="z3H-Qp-Ia5" secondAttribute="bottom" id="fgF-fo-610"/>
+                            <constraint firstItem="NEV-vx-QRi" firstAttribute="width" secondItem="EUt-CZ-a5d" secondAttribute="width" id="iBO-xv-qEf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="z3H-Qp-Ia5" secondAttribute="trailing" constant="-16" id="wR4-qo-qq1"/>
+                            <constraint firstItem="NEV-vx-QRi" firstAttribute="leading" secondItem="K3a-05-Jmv" secondAttribute="leading" constant="40" id="yF3-Ej-PSv"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="165" y="176"/>
+        </scene>
+    </scenes>
+</document>
