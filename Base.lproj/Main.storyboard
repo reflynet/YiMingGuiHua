@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUt-CZ-a5d">
-                                <rect key="frame" x="25" y="393" width="272" height="50"/>
+                                <rect key="frame" x="25" y="385" width="272" height="50"/>
                                 <color key="backgroundColor" red="0.78431372549019607" green="0.098039215686274508" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="FeP-is-m3Y"/>
@@ -33,9 +33,10 @@
                                 </state>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" image="login_logo" translatesAutoresizingMaskIntoConstraints="NO" id="fTN-1N-KpH">
-                                <rect key="frame" x="138" y="100" width="44" height="44"/>
+                                <rect key="frame" x="50" y="-84" width="220" height="220"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="116" id="0sV-c4-b5M"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="220" id="lxH-fn-wUm"/>
                                     <constraint firstAttribute="width" secondItem="fTN-1N-KpH" secondAttribute="height" multiplier="1:1" id="n4l-B6-27f"/>
                                 </constraints>
                                 <variation key="default">
@@ -45,7 +46,7 @@
                                 </variation>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NEV-vx-QRi">
-                                <rect key="frame" x="24" y="225" width="272" height="150"/>
+                                <rect key="frame" x="24" y="217" width="272" height="150"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_lock" translatesAutoresizingMaskIntoConstraints="NO" id="b4H-eZ-FNQ">
                                         <rect key="frame" x="13" y="75" width="25" height="25"/>
@@ -93,13 +94,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="四川省移民安置规划中心大中型水库" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCL-9F-35J">
-                                <rect key="frame" x="25" y="157" width="270" height="22"/>
+                                <rect key="frame" x="25" y="149" width="270" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="移民项目数据管理和办公事务管理" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSb-vp-Sbg">
-                                <rect key="frame" x="25" y="180" width="270" height="22"/>
+                                <rect key="frame" x="25" y="172" width="270" height="22"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -135,7 +136,7 @@
                             <constraint firstItem="fTN-1N-KpH" firstAttribute="top" secondItem="WdO-lp-LZF" secondAttribute="bottom" constant="80" id="hDj-CE-Rnm"/>
                             <constraint firstItem="fTN-1N-KpH" firstAttribute="top" secondItem="WdO-lp-LZF" secondAttribute="bottom" constant="8" id="iCv-Oh-GPz"/>
                             <constraint firstItem="fTN-1N-KpH" firstAttribute="centerX" secondItem="dSb-vp-Sbg" secondAttribute="centerX" id="moY-2F-78I"/>
-                            <constraint firstAttribute="bottom" secondItem="EUt-CZ-a5d" secondAttribute="bottom" constant="37" id="njw-VZ-dDC"/>
+                            <constraint firstAttribute="bottom" secondItem="EUt-CZ-a5d" secondAttribute="bottom" constant="45" id="njw-VZ-dDC"/>
                             <constraint firstItem="07E-Fq-6SL" firstAttribute="top" secondItem="z3H-Qp-Ia5" secondAttribute="bottom" id="noM-cf-IkB"/>
                             <constraint firstItem="EUt-CZ-a5d" firstAttribute="centerX" secondItem="NEV-vx-QRi" secondAttribute="centerX" id="s52-dz-lt3"/>
                             <constraint firstItem="gCL-9F-35J" firstAttribute="top" secondItem="fTN-1N-KpH" secondAttribute="bottom" constant="50" id="sDr-vC-5mm"/>
@@ -148,13 +149,14 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="4xp-8n-b7g"/>
+                                <exclude reference="sDr-vC-5mm"/>
                                 <exclude reference="9JS-DN-sof"/>
                                 <exclude reference="AgC-Zh-jxQ"/>
                                 <exclude reference="KtR-ea-cKL"/>
                                 <exclude reference="L0R-Om-rWi"/>
                                 <exclude reference="Mkf-N0-TGf"/>
+                                <exclude reference="hDj-CE-Rnm"/>
                                 <exclude reference="iCv-Oh-GPz"/>
-                                <exclude reference="sDr-vC-5mm"/>
                                 <exclude reference="R5z-2T-elq"/>
                                 <exclude reference="Ti4-BQ-wCr"/>
                                 <exclude reference="cpa-Og-vb6"/>
