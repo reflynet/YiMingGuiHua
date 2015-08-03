@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-
+#import "GmailLikeLoadingView.h"
+#import "YMProfileDeleage.h"
 @interface ViewController ()
 
 @end
@@ -17,9 +18,18 @@
 @synthesize btnLogin;
 @synthesize viewBackground;
 @synthesize imageLogo;
+@synthesize viewBg;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
+    
+    GmailLikeLoadingView *loadingView = [[GmailLikeLoadingView alloc] initWithFrame:CGRectMake(5, 5, 50, 50)];
+    
+    [viewBg addSubview:loadingView];
+    
+    [loadingView startAnimating];
     
     [self setLayout];
     
@@ -29,6 +39,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+ 
     // Dispose of any resources that can be recreated.
 }
 
@@ -50,4 +61,10 @@
 
 }
 
+- (IBAction)onLogin:(id)sender {
+    YMProfileDeleage *profilrDe = [[YMProfileDeleage alloc] init];
+    [profilrDe getData];
+
+   
+}
 @end

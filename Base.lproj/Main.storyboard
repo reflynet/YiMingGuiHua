@@ -31,6 +31,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IgQ-xs-gVt"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" image="login_logo" translatesAutoresizingMaskIntoConstraints="NO" id="fTN-1N-KpH">
                                 <rect key="frame" x="50" y="-84" width="220" height="220"/>
@@ -172,6 +175,7 @@
                         <outlet property="btnLogin" destination="EUt-CZ-a5d" id="PMz-AB-toT"/>
                         <outlet property="imageLogo" destination="fTN-1N-KpH" id="Rju-dv-q4z"/>
                         <outlet property="viewBackground" destination="NEV-vx-QRi" id="teg-GN-MFw"/>
+                        <outlet property="viewBg" destination="K3a-05-Jmv" id="1ki-dl-Kw3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
