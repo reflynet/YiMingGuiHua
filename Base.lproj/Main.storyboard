@@ -149,7 +149,6 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="4xp-8n-b7g"/>
-                                <exclude reference="sDr-vC-5mm"/>
                                 <exclude reference="9JS-DN-sof"/>
                                 <exclude reference="AgC-Zh-jxQ"/>
                                 <exclude reference="KtR-ea-cKL"/>
@@ -157,6 +156,7 @@
                                 <exclude reference="Mkf-N0-TGf"/>
                                 <exclude reference="hDj-CE-Rnm"/>
                                 <exclude reference="iCv-Oh-GPz"/>
+                                <exclude reference="sDr-vC-5mm"/>
                                 <exclude reference="R5z-2T-elq"/>
                                 <exclude reference="Ti4-BQ-wCr"/>
                                 <exclude reference="cpa-Og-vb6"/>
