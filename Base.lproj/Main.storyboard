@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -9,7 +10,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WdO-lp-LZF"/>
                         <viewControllerLayoutGuide type="bottom" id="07E-Fq-6SL"/>
@@ -180,12 +181,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-211" y="180"/>
+            <point key="canvasLocation" x="-316" y="171"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile Controller-->
         <scene sceneID="Zo0-br-ToD">
             <objects>
-                <viewController id="pyZ-G4-4ST" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pyZ-G4-4ST" customClass="ProfileController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Py2-gA-Dc8"/>
                         <viewControllerLayoutGuide type="bottom" id="RON-i2-VPc"/>
@@ -193,13 +194,26 @@
                     <view key="view" contentMode="scaleToFill" id="YCk-rf-Aay">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userbg" translatesAutoresizingMaskIntoConstraints="NO" id="jHr-Ic-zH2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="XZX-5l-rb6"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jHr-Ic-zH2" firstAttribute="leading" secondItem="YCk-rf-Aay" secondAttribute="leadingMargin" constant="-16" id="718-C5-p4d"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jHr-Ic-zH2" secondAttribute="trailing" constant="-16" id="9iv-3A-4oi"/>
+                            <constraint firstItem="jHr-Ic-zH2" firstAttribute="top" secondItem="YCk-rf-Aay" secondAttribute="topMargin" id="c6G-nv-toL"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QkI-hD-oaz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="324" y="180"/>
+            <point key="canvasLocation" x="112" y="171"/>
         </scene>
     </scenes>
     <resources>
@@ -207,5 +221,6 @@
         <image name="icon_mail" width="128" height="128"/>
         <image name="login_bg" width="640" height="1130"/>
         <image name="login_logo" width="180" height="180"/>
+        <image name="userbg" width="640" height="270"/>
     </resources>
 </document>

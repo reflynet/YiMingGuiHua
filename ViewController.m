@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "GmailLikeLoadingView.h"
 #import "YMProfileDeleage.h"
+#import "YMLoginDeleage.h"
 @interface ViewController ()
 
 @end
@@ -19,11 +20,11 @@
 @synthesize viewBackground;
 @synthesize imageLogo;
 @synthesize viewBg;
-
+@synthesize loginController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
+    
     
     GmailLikeLoadingView *loadingView = [[GmailLikeLoadingView alloc] initWithFrame:CGRectMake(5, 5, 50, 50)];
     
@@ -62,8 +63,28 @@
 }
 
 - (IBAction)onLogin:(id)sender {
-    YMProfileDeleage *profilrDe = [[YMProfileDeleage alloc] init];
-    [profilrDe getData];
+    
+    YMLoginDeleage* dLogin = [[YMLoginDeleage alloc]init];
+    
+    [dLogin login:@"222" pwd:@"222" compete:^(bool res) {
+        YMProfileDeleage* yD = [[YMProfileDeleage alloc]init];
+         [yD getData :^(NSMutableArray* arr){
+         
+             ProfileController *ickImageViewController =
+         [self.storyboard instantiateViewControllerWithIdentifier:@"profile"];
+        [self presentViewController:ickImageViewController animated:YES completion:nil];
+         [self removeFromParentViewController];
+         
+         }];
+
+    }];
+    
+     NSLog(@"代码执行完毕");
+    
+    
+
+
+   
 
    
 }
