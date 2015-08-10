@@ -8,8 +8,8 @@
 
 #import "ViewController.h"
 #import "GmailLikeLoadingView.h"
-#import "YMProfileDeleage.h"
-#import "YMLoginDeleage.h"
+#import "YMProfileEntity.h"
+
 @interface ViewController ()
 
 @end
@@ -22,7 +22,18 @@
 @synthesize viewBg;
 @synthesize loginController;
 
+@synthesize ymProfileDeleage;
+@synthesize ymLoginDeleage;
+
 - (void)viewDidLoad {
+    
+    self.navigationController.navigationBarHidden = true;
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:20/255.0 green:155/255.0 blue:213/255.0 alpha:1.0]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor redColor]];
+    //@{}代表Dictionary
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
     [super viewDidLoad];
     
     
@@ -40,7 +51,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
- 
+    
     // Dispose of any resources that can be recreated.
 }
 
@@ -59,33 +70,51 @@
     CGFloat imageWidth =imageLogo.frame.size.width;
     CGSize imagesize=CGSizeMake(imageWidth,imageWidth);
     
-
+    
 }
 
 - (IBAction)onLogin:(id)sender {
     
-    YMLoginDeleage* dLogin = [[YMLoginDeleage alloc]init];
+    ymLoginDeleage = [[YMLoginDeleage alloc]init];
     
-    [dLogin login:@"222" pwd:@"222" compete:^(bool res) {
-        YMProfileDeleage* yD = [[YMProfileDeleage alloc]init];
-         [yD getData :^(NSMutableArray* arr){
-         
-             ProfileController *ickImageViewController =
-         [self.storyboard instantiateViewControllerWithIdentifier:@"profile"];
-        [self presentViewController:ickImageViewController animated:YES completion:nil];
-         [self removeFromParentViewController];
-         
-         }];
+    [ymLoginDeleage login:@"18202812576" pwd:@"123456789" compete:^(YMCustomerEntity* res) {
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        //存储时，除NSNumber类型使用对应的类型意外，其他的都是使用setObject:forKey:
+        [userDefaults setValue:res.TrueName forKey:@"ym_customer_truename"];
+        [userDefaults setValue:res.Job forKey:@"ym_customer_job"];
+                [userDefaults setValue:res.GradeName forKey:@"ym_customer_grade"];
+               [userDefaults setValue:res.XmppName forKey:@"ym_customer_xmpp"];
+        [userDefaults setValue:res.Img forKey:@"ym_customer_img"];
+        
+        [userDefaults synchronize];
+        
+        if(res != nil)
+        {
+            
+            
+            ProfileController *ickImageViewController =
+            [self.storyboard instantiateViewControllerWithIdentifier:@"profile"];
+            // [self presentViewController:ickImageViewController animated:YES completion:nil];
+            
+            [self.navigationController pushViewController:ickImageViewController animated:true];
+            [self removeFromParentViewController];
 
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"登录失败" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+            // optional - add more buttons:
+            [alert addButtonWithTitle:@"知道了"];
+            [alert show];}
+        
     }];
     
-     NSLog(@"代码执行完毕");
     
     
-
-
-   
-
-   
+    
+    
+    
+    
 }
 @end
