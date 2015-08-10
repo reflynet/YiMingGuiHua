@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ProfileController.h"
+#import "YMProfileDeleage.h"
+#import "YMLoginDeleage.h"
 
 @interface ViewController : UIViewController
 
@@ -16,7 +18,12 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageLogo;
 @property (strong, nonatomic) IBOutlet UIView *viewBg;
 
+@property (nonatomic, strong)  YMProfileDeleage* ymProfileDeleage;
+@property (nonatomic, strong)  YMLoginDeleage* ymLoginDeleage;
+
+
 @property (strong, nonatomic) ViewController *loginController;
+
 - (IBAction)onLogin:(id)sender;
 
 @end
