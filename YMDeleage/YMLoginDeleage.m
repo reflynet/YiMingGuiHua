@@ -65,6 +65,7 @@ compete :(void (^)(YMCustomerEntity*))compete
                                           }
                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                               // 失败后的处理
+                                              NSLog(error.description);
                                           }];
     [manager.operationQueue addOperation:operation];
 

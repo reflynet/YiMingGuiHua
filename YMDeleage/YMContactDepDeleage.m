@@ -36,9 +36,9 @@
     
     NSString* requestUrl = [NSString stringWithFormat:@"%@client/?c=channel&a=enumstep&eid=9&pagesize=40",[YMCommon getServer]];
     
-    if(type == 2)
+    if(type > 0)
     {
-     requestUrl = [NSString stringWithFormat:@"%@client/?c=channel&a=enumstep&eid=9&pagesize=40",[YMCommon getServer]];
+        requestUrl = [NSString stringWithFormat:@"%@client/?c=channel&a=enumstep&pagesize=60&pageindex=1&fid=%d&sortcolumn=orderby&sortmethod=asc",[YMCommon getServer],type];
     }
     
     [manager GET: requestUrl parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject){
@@ -67,13 +67,15 @@
     if([elementName isEqualToString:@"item"])
     {
         
-      //  entity = [[YMContactEntity alloc] init];
+       entity = [[YMContactDepEntity alloc] init];
     }
 }
 
 //解析文本节点
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)str{
+    @try
+    {
     if ([currentElement isEqualToString:@"id"]) {
        entity.ID = [str intValue];
     }
@@ -95,9 +97,12 @@
     if ([currentElement isEqualToString:@"selectid"]) {
         entity.SelectID = [str intValue];
     }
-    if ([currentElement isEqualToString:@"parentid"]) {
-        entity.ParentID = [str intValue];
     }
+    @catch(NSException *exception){}
+    
+    //if ([currentElement isEqualToString:@"parentid"]) {
+    //    entity.ParentID = [str intValue];
+   // }
 
     
     
@@ -109,7 +114,10 @@
  qualifiedName:(NSString *)qName{
     if([elementName isEqualToString:@"item"])
     {
+        if(entity != nil)
+        {
         [result addObject:entity];
+        }
     }
 }
 
@@ -150,7 +158,6 @@
             }
             
             
-            
         }
         else
         {
@@ -159,13 +166,8 @@
         }
         
     }
-    
-    
     return  mDict;
     
-    
-    
-    //CFStringTransform((CFMutableStringRef)mutableString, NULL, kCFStringTransformStripDiacritics, false);
 }
 
 

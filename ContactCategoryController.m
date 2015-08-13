@@ -11,10 +11,14 @@
 #import "YMContactDepEntity.h"
 #import "YMTypeListCell.h"
 
+@interface ContactCategoryController()
+@property BOOL isSelect;
+
+@end
 
 
 @implementation ContactCategoryController
-
+@synthesize isSelect;
 @synthesize tableView;
 @synthesize data;
 @synthesize keys;
@@ -22,7 +26,7 @@
 -(void)loadView
 {
     [super loadView];
-
+    self.isSelect =false;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -34,8 +38,8 @@
     
     
     YMContactDepDeleage* del = [[YMContactDepDeleage alloc]init];
-    [del getData:1 compete:^(NSMutableArray *arr) {
-  
+    [del getData:0 compete:^(NSMutableArray *arr) {
+        
         data = [del convertToDictionaryByResult:arr];
         
         NSEnumerator * enumeratorKey = [data keyEnumerator];
@@ -88,6 +92,40 @@
     cell.lblTitle.text = entity.Name;
     
     return  cell;
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString* key = self.keys[ indexPath.section];
+    NSMutableArray* dataSection = self.data[key];
+    YMContactDepEntity *entity =  dataSection[indexPath.row];
+    if(self.isSelect == false)
+    {
+        keys = [[NSMutableArray alloc]init];
+        
+        
+        YMContactDepDeleage* del = [[YMContactDepDeleage alloc]init];
+        [del getData:entity.ID compete:^(NSMutableArray *arr) {
+            
+            data = [del convertToDictionaryByResult:arr];
+            
+            NSEnumerator * enumeratorKey = [data keyEnumerator];
+            
+            //快速枚举遍历所有KEY的值
+            for (NSObject *object in enumeratorKey) {
+                [keys addObject:object];
+            }
+            [keys sortUsingComparator:^NSComparisonResult(__strong id obj1,__strong id obj2){
+                NSString *str1=(NSString *)obj1;
+                NSString *str2=(NSString *)obj2;
+                return [str1 compare:str2];
+            }];
+            self.isSelect =true;
+            [self.tableView reloadData];
+            
+        }];
+    }
     
 }
 
