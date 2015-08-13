@@ -10,10 +10,10 @@
 
 #import "LinkManController.h"
 #import "ContactCategoryController.h"
-
+#import "CityController.h"
 @interface ContactController : UIViewController
 
 @property ContactController* _contactController;
 @property LinkManController* _linkManContrller;
-
+@property CityController* _city;
 @end

@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LinkManController : UIViewController
+@interface LinkManController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property   NSMutableDictionary* data;
+@property NSMutableArray *keys;
+
 
 @end

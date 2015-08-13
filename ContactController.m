@@ -11,20 +11,39 @@
 @implementation ContactController
 @synthesize _contactController;
 @synthesize _linkManContrller;
-
+@synthesize _city;
 
 -(void)viewDidLoad
 {
-    [super viewDidLoad];
+    
+    
+   
+ 
+   [self.view setBounds:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y-self.navigationController.navigationBar.frame.size.height-12,
+                                   self.view.bounds.size.width,self.view.bounds.size.height)];
+    
+  //  [self.view setFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y-50,
+        //                            self.view.bounds.size.width,self.view.bounds.size.height)];
     
     NSArray *array = [NSArray arrayWithObjects:@"通讯录",@"记录", nil];
     UISegmentedControl *segmentedController = [[UISegmentedControl alloc] initWithItems:array];
     segmentedController.segmentedControlStyle = UISegmentedControlSegmentCenter;
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor, nil,UITextAttributeFont ,[UIColor whiteColor],UITextAttributeTextShadowColor ,nil];
+    
     [segmentedController setTitleTextAttributes:dic forState:UIControlStateSelected];
     
     [segmentedController addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+    segmentedController.selectedSegmentIndex = 0;
     self.navigationItem.titleView = segmentedController;
+    self._contactController =    [self.storyboard instantiateViewControllerWithIdentifier:@"contactcategory"];
+      self._linkManContrller =    [self.storyboard instantiateViewControllerWithIdentifier:@"linkman"];
+    
+    [self.view addSubview:_contactController.view];
+    [self.view addSubview:_linkManContrller.view];
+    
+    [super viewDidLoad];
+ 
+
 }
 
 -(void)segmentAction:(UISegmentedControl *)Seg
@@ -33,30 +52,35 @@
     
     if(Index==0)
     {
-        if(self._linkManContrller == nil)
+        [self.view bringSubviewToFront:_linkManContrller.view];
+        
+    /*    if(self._linkManContrller == nil)
         {
          self._linkManContrller =    [self.storyboard instantiateViewControllerWithIdentifier:@"linkman"];
         }
-            [self.view insertSubview:self._linkManContrller.view atIndex:0];
+            [self.view insertSubview:self._linkManContrller.view atIndex:1];
+        
         if(self._contactController != nil)
         {
         [self._contactController.view removeFromSuperview];
         }
+     */
 
         
     }
     else{
-        if(self._contactController == nil)
+        [self.view bringSubviewToFront:_contactController.view];
+     /*   if(self._contactController == nil)
         {
             self._contactController =    [self.storyboard instantiateViewControllerWithIdentifier:@"contactcategory"];
         }
-            [self.view insertSubview:self._contactController.view atIndex:0];
+            [self.view insertSubview:self._contactController.view atIndex:1];
         
         if(self._linkManContrller != nil)
         {
           [self._linkManContrller.view removeFromSuperview];
         }
-
+*/
         
     }
 }

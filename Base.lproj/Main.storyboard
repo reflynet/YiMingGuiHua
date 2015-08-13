@@ -476,18 +476,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0m-fZ-025">
-                                <rect key="frame" x="36" y="110" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="45d-Zl-mEz">
+                                <rect key="frame" x="6" y="0.0" width="308" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="BqQ-DP-DFN">
+                                <rect key="frame" x="6" y="44" width="308" height="436"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="45d-Zl-mEz" secondAttribute="trailing" constant="-10" id="2Kx-U9-1Wf"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="BqQ-DP-DFN" secondAttribute="bottom" id="8iX-5y-JmA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BqQ-DP-DFN" secondAttribute="trailing" constant="-10" id="BQ5-v3-aJA"/>
+                            <constraint firstItem="BqQ-DP-DFN" firstAttribute="leading" secondItem="qSR-Cb-2GZ" secondAttribute="leadingMargin" constant="-10" id="M7l-3h-vjA"/>
+                            <constraint firstItem="45d-Zl-mEz" firstAttribute="leading" secondItem="qSR-Cb-2GZ" secondAttribute="leadingMargin" constant="-10" id="TLT-gt-Jat"/>
+                            <constraint firstItem="45d-Zl-mEz" firstAttribute="top" secondItem="qSR-Cb-2GZ" secondAttribute="topMargin" id="cel-LH-uxM"/>
+                            <constraint firstItem="BqQ-DP-DFN" firstAttribute="top" secondItem="45d-Zl-mEz" secondAttribute="bottom" id="dv5-B4-teE"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="dNO-N8-pR0" id="SaN-0b-Sxl"/>
+                        <outlet property="tableView" destination="BqQ-DP-DFN" id="vgm-i1-I5E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pyq-Zy-BUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="dNO-N8-pR0">
+                    <connections>
+                        <outlet property="delegate" destination="cSd-GY-yCZ" id="51y-0l-3ue"/>
+                        <outlet property="searchContentsController" destination="cSd-GY-yCZ" id="I2t-0e-2GK"/>
+                        <outlet property="searchResultsDataSource" destination="cSd-GY-yCZ" id="hXh-8j-aGX"/>
+                        <outlet property="searchResultsDelegate" destination="cSd-GY-yCZ" id="kSE-rp-8Sp"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="939" y="1846"/>
         </scene>
