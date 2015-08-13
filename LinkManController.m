@@ -10,8 +10,8 @@
 #import "YMContactDeleage.h"
 #import "YMContactEntity.h"
 #import "YMTypeListCell.h"
-
-
+#import "YMContactCustomerEntity.h"
+#import "MemberController.h"
 
 @implementation LinkManController
 @synthesize currentNav;
@@ -94,5 +94,28 @@
 {
     return  self.keys;
 }
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString* key = self.keys[ indexPath.section];
+    NSMutableArray* dataSection = self.data[key];
+    YMContactEntity *entity =  dataSection[indexPath.row];
+    
+    YMContactCustomerEntity* member = [[YMContactCustomerEntity alloc]init];
+    member.ID = entity.Id;
+    member.RealName = entity.RealName;
+    member.FacePhoto = entity.FacePhoto;
+    member.Email = entity.Email;
+    member.Job = entity.Job;
+    member.Department = entity.Department;
+ 
+    
+    MemberController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"member"];
+    controller.member =member;
+    [self.currentNav pushViewController:controller animated:true];
+    
+}
+
 
 @end

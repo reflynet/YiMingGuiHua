@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YMContactCustomerEntity.h"
 @interface ContactCustomerController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property YMContactCustomerEntity* member;
 
 @property int ID;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

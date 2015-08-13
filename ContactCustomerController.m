@@ -10,9 +10,11 @@
 #import "YMContactCustomerDeleteage.h"
 #import "YMContactCustomerEntity.h"
 #import "YMTypeListCell.h"
+#import "MemberController.h"
 @implementation ContactCustomerController
 @synthesize ID;
 @synthesize source;
+
 
 
 @synthesize tableView;
@@ -45,13 +47,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     YMContactCustomerEntity* current = [ self.source objectAtIndex:indexPath.row];
-  /*
-    EntityListController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"EntityList"];
-    controller.ID = current.Id;
-    controller.Table = current.Table;
+  
+    MemberController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"member"];
+    controller.member =current;
     [self.navigationController pushViewController:controller animated:true];
     
-    */
+    
 }
 
 
@@ -72,7 +73,6 @@
     
     return  cell;
 }
-
 
 
 @end

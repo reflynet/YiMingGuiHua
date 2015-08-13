@@ -90,6 +90,12 @@
     if ([currentElement isEqualToString:@"job"]) {
         entity.Job = str;
     }
+    if ([currentElement isEqualToString:@"facephoto"]) {
+        entity.FacePhoto = str;
+    }
+    if ([currentElement isEqualToString:@"department"]) {
+        entity.Department = str;
+    }
     
     
 }

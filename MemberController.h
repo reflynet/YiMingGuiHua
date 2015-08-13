@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YMContactCustomerEntity.h"
 @interface MemberController : UIViewController
+
+@property  YMContactCustomerEntity *member;
+@property (weak, nonatomic) IBOutlet UIImageView *imgHead;
+@property (weak, nonatomic) IBOutlet UILabel *lblRealName;
+@property (weak, nonatomic) IBOutlet UILabel *lblDes;
+@property (weak, nonatomic) IBOutlet UILabel *lblTel;
+@property (weak, nonatomic) IBOutlet UILabel *lblPhone;
+@property (weak, nonatomic) IBOutlet UILabel *lblMail;
 
 @end
