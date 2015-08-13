@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContactCategoryController : UIViewController
+@interface ContactCategoryController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property   NSMutableDictionary* data;
+@property NSMutableArray *keys;
 
 @end
