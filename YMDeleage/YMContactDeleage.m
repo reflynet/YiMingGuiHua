@@ -5,7 +5,7 @@
 #import "YMCommon.h"
 #import "YMContactEntity.h"
 #import <AFNetworking.h>
-
+#import "YMCommon.h"
 
 @interface YMContactDeleage()
 

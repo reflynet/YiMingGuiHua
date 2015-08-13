@@ -14,7 +14,7 @@
 
 
 @implementation LinkManController
-
+@synthesize currentNav;
 @synthesize tableView;
 @synthesize data;
 @synthesize keys;

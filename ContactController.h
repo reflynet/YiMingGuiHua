@@ -13,7 +13,7 @@
 #import "CityController.h"
 @interface ContactController : UIViewController
 
-@property ContactController* _contactController;
+@property ContactCategoryController* _contactController;
 @property LinkManController* _linkManContrller;
 @property CityController* _city;
 @end

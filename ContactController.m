@@ -40,7 +40,9 @@
     
     [self.view addSubview:_contactController.view];
     [self.view addSubview:_linkManContrller.view];
-    
+    self._linkManContrller.currentNav = self.navigationController;
+    self._contactController.currentNav = self.navigationController;
+
     [super viewDidLoad];
  
 

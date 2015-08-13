@@ -9,5 +9,5 @@
 #import "ContactCustomerController.h"
 
 @implementation ContactCustomerController
-
+@synthesize ID;
 @end

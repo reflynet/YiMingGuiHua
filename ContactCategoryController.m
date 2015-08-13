@@ -10,7 +10,7 @@
 #import "YMContactDepDeleage.h"
 #import "YMContactDepEntity.h"
 #import "YMTypeListCell.h"
-
+#import "ContactCustomerController.h"
 @interface ContactCategoryController()
 @property BOOL isSelect;
 
@@ -18,6 +18,7 @@
 
 
 @implementation ContactCategoryController
+@synthesize currentNav;
 @synthesize isSelect;
 @synthesize tableView;
 @synthesize data;
@@ -125,6 +126,14 @@
             [self.tableView reloadData];
             
         }];
+    }
+    else{
+        ContactCustomerController* nextC =
+        [self.storyboard instantiateViewControllerWithIdentifier:@"ContactCustomer"];
+        nextC.ID = entity.ID;
+        [self.currentNav pushViewController:nextC animated:true];
+        
+        
     }
     
 }
