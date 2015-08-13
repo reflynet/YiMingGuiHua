@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DetialViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet UILabel *lblDanwei;
+@property (weak, nonatomic) IBOutlet UILabel *lblName;
 @end
