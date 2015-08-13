@@ -67,7 +67,7 @@
     if([elementName isEqualToString:@"item"])
     {
         
-        entity = [[YMContactEntity alloc] init];
+      //  entity = [[YMContactEntity alloc] init];
     }
 }
 
@@ -75,22 +75,22 @@
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)str{
     if ([currentElement isEqualToString:@"id"]) {
-        entity.Id = [str intValue];
+     //   entity.Id = [str intValue];
     }
     if ([currentElement isEqualToString:@"realname"]) {
-        entity.RealName = str;
+      //  entity.RealName = str;
     }
     if ([currentElement isEqualToString:@"telphone"]) {
-        entity.TelPhone = str ;
+      //  entity.TelPhone = str ;
     }
     if ([currentElement isEqualToString:@"phone"]) {
-        entity.Phone = str;
+       // entity.Phone = str;
     }
     if ([currentElement isEqualToString:@"email"]) {
-        entity.Email = str;
+       // entity.Email = str;
     }
     if ([currentElement isEqualToString:@"job"]) {
-        entity.Job = str;
+       // entity.Job = str;
     }
     
     
@@ -110,34 +110,7 @@
 -(NSMutableDictionary*)convertToDictionaryByResult: (NSMutableArray*) arr
 {
     NSMutableDictionary *mDict = [[NSMutableDictionary alloc] init];
-    /*
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"A"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"B"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"C"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"D"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"E"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"F"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"G"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"H"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"I"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"J"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"K"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"L"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"M"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"N"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"O"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"P"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"Q"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"R"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"S"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"T"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"U"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"V"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"W"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"X"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"Y"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"Z"];
-     [mDict setObject:[[NSMutableArray alloc]init] forKey:@"?"];*/
+  /*
     
     for (int i =0; i<[arr count];i++) {
         YMContactEntity *current = arr[i];
@@ -179,7 +152,7 @@
         }
         
     }
-    
+    */
     
     return  mDict;
     
