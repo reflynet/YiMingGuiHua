@@ -7,16 +7,22 @@
 //
 
 #import "DetialViewController.h"
-
+#import "YMDetailDelegate.h"
 @interface DetialViewController ()
 
 @end
 
 @implementation DetialViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    
+       YMDetailDelegate*  detailDelegate = [[YMDetailDelegate alloc]init];
+    [detailDelegate getData:1 m:@"article" compete:^(NSMutableArray *arr) {
+    
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
