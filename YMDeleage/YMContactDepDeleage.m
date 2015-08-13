@@ -36,9 +36,9 @@
     
     NSString* requestUrl = [NSString stringWithFormat:@"%@client/?c=channel&a=enumstep&eid=9&pagesize=40",[YMCommon getServer]];
     
-    if(type == 2)
+    if(type > 0)
     {
-     requestUrl = [NSString stringWithFormat:@"%@client/?c=channel&a=enumstep&eid=9&pagesize=40",[YMCommon getServer]];
+        requestUrl = [NSString stringWithFormat:@"%@client/?c=channel&a=enumstep&pagesize=60&pageindex=1&fid=%d&sortcolumn=orderby&sortmethod=asc",[YMCommon getServer],type];
     }
     
     [manager GET: requestUrl parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject){
@@ -67,31 +67,43 @@
     if([elementName isEqualToString:@"item"])
     {
         
-      //  entity = [[YMContactEntity alloc] init];
+       entity = [[YMContactDepEntity alloc] init];
     }
 }
 
 //解析文本节点
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)str{
+    @try
+    {
     if ([currentElement isEqualToString:@"id"]) {
-     //   entity.Id = [str intValue];
+       entity.ID = [str intValue];
     }
-    if ([currentElement isEqualToString:@"realname"]) {
-      //  entity.RealName = str;
+    if ([currentElement isEqualToString:@"sons"]) {
+        entity.Sons = [str intValue];
     }
-    if ([currentElement isEqualToString:@"telphone"]) {
-      //  entity.TelPhone = str ;
+    if ([currentElement isEqualToString:@"parentid"]) {
+        entity.ParentID = [str intValue]  ;
     }
-    if ([currentElement isEqualToString:@"phone"]) {
-       // entity.Phone = str;
+    if ([currentElement isEqualToString:@"enname"]) {
+        entity.ENName = str;
     }
-    if ([currentElement isEqualToString:@"email"]) {
-       // entity.Email = str;
+    if ([currentElement isEqualToString:@"name"]) {
+        entity.Name = str;
     }
-    if ([currentElement isEqualToString:@"job"]) {
-       // entity.Job = str;
+    if ([currentElement isEqualToString:@"orderby"]) {
+       entity.OrderBy = [str intValue];
     }
+    if ([currentElement isEqualToString:@"selectid"]) {
+        entity.SelectID = [str intValue];
+    }
+    }
+    @catch(NSException *exception){}
+    
+    //if ([currentElement isEqualToString:@"parentid"]) {
+    //    entity.ParentID = [str intValue];
+   // }
+
     
     
 }
@@ -102,7 +114,10 @@
  qualifiedName:(NSString *)qName{
     if([elementName isEqualToString:@"item"])
     {
+        if(entity != nil)
+        {
         [result addObject:entity];
+        }
     }
 }
 
@@ -110,12 +125,12 @@
 -(NSMutableDictionary*)convertToDictionaryByResult: (NSMutableArray*) arr
 {
     NSMutableDictionary *mDict = [[NSMutableDictionary alloc] init];
-  /*
+  
     
     for (int i =0; i<[arr count];i++) {
-        YMContactEntity *current = arr[i];
+        YMContactDepEntity *current = arr[i];
         
-        NSMutableString *pinYin = [NSMutableString stringWithString:current.RealName];
+        NSMutableString *pinYin = [NSMutableString stringWithString:current.Name];
         if([pinYin length]>0)
         {
             CFStringTransform((CFMutableStringRef)pinYin, NULL, kCFStringTransformToLatin, false);
@@ -143,7 +158,6 @@
             }
             
             
-            
         }
         else
         {
@@ -152,13 +166,8 @@
         }
         
     }
-    */
-    
     return  mDict;
     
-    
-    
-    //CFStringTransform((CFMutableStringRef)mutableString, NULL, kCFStringTransformStripDiacritics, false);
 }
 
 
