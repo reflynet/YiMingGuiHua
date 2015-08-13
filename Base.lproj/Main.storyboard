@@ -572,8 +572,15 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="lblBaomidengji" destination="vM5-Oj-G9j" id="EMW-st-VkV"/>
+                        <outlet property="lblBianhao" destination="aSg-QH-Jqe" id="Z6g-dw-Fun"/>
                         <outlet property="lblDanwei" destination="XSx-lL-38b" id="esX-q0-QwH"/>
-                        <outlet property="lblName" destination="BJW-d8-YIl" id="Zlv-95-3EB"/>
+                        <outlet property="lblDengjihao" destination="Luo-HL-2Yr" id="AUD-ge-Q8W"/>
+                        <outlet property="lblName" destination="aSg-QH-Jqe" id="dqh-Jz-pnP"/>
+                        <outlet property="lblNibanyijian" destination="itG-vF-ttJ" id="nYb-5o-6sA"/>
+                        <outlet property="lblShijian" destination="NoW-Dg-q7l" id="Zlz-XM-sRR"/>
+                        <outlet property="lblWenjianbiaoti" destination="m4L-9J-6tz" id="MjG-a7-YCk"/>
+                        <outlet property="lblYiyuerenyuan" destination="X13-Hd-KtX" id="hrn-H8-d3d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LtV-xY-d2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
