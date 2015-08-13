@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ContactCustomerController : UIViewController
+
+@property int ID;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

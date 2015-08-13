@@ -13,5 +13,5 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property   NSMutableDictionary* data;
 @property NSMutableArray *keys;
-
+@property UINavigationController* currentNav;
 @end
