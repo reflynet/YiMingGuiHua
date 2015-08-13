@@ -27,7 +27,7 @@
 
 
 
--(void)getData : (int)ID page:(int)page compete:(void (^)(NSMutableArray *arr))compete
+-(void)getData : (int)ID compete:(void (^)(NSMutableArray *arr))compete
 {
     result = [[NSMutableArray alloc]init];
     

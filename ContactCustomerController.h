@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContactCustomerController : UIViewController
+@interface ContactCustomerController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property int ID;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property NSMutableArray* source;
 @end

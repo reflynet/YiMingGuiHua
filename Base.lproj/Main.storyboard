@@ -322,6 +322,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="0e2-6b-0R3"/>
+                                <exclude reference="Nzz-RZ-Rei"/>
                                 <exclude reference="TZt-yd-4Rf"/>
                                 <exclude reference="hVd-7k-M7d"/>
                             </mask>
@@ -749,13 +750,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="O3l-33-8sK" firstAttribute="top" secondItem="gWb-py-EGp" secondAttribute="bottom" id="9uu-vl-8ZX"/>
                             <constraint firstItem="O3l-33-8sK" firstAttribute="top" secondItem="866-Bv-kTW" secondAttribute="topMargin" id="RhD-7B-3gD"/>
                             <constraint firstItem="O3l-33-8sK" firstAttribute="leading" secondItem="866-Bv-kTW" secondAttribute="leadingMargin" constant="-16" id="iKf-FV-pzo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="O3l-33-8sK" secondAttribute="trailing" constant="-16" id="nJh-Ym-iO1"/>
                             <constraint firstItem="I65-7k-lYe" firstAttribute="top" secondItem="O3l-33-8sK" secondAttribute="bottom" id="xjn-OH-4Fe"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="RhD-7B-3gD"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="thT-6t-SaY"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="480"/>
                     <connections>
                         <outlet property="tableView" destination="O3l-33-8sK" id="TWr-G3-8G0"/>
                     </connections>
