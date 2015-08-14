@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "GmailLikeLoadingView.h"
 #import "YMProfileEntity.h"
-
+#import "MRProgress.h"
 @interface ViewController ()
 
 @end
@@ -75,6 +75,17 @@
 
 - (IBAction)onLogin:(id)sender {
     
+ // [MRProgressOverlayView showOverlayAddedTo:self.window animated:YES];
+   MRProgressOverlayView* progress =  [MRProgressOverlayView showOverlayAddedTo:self.view animated:true];
+    progress.tintColor = [UIColor redColor];
+    progress.mode =MRProgressOverlayViewModeIndeterminate;
+    progress.titleLabelText = @"登录中...";
+    
+    
+   // progress.mode = MRProgressOverlayViewModeCross;
+
+    
+    
     ymLoginDeleage = [[YMLoginDeleage alloc]init];
     
     [ymLoginDeleage login:@"18202812576" pwd:@"123456789" compete:^(YMCustomerEntity* res) {
@@ -92,13 +103,25 @@
         if(res != nil)
         {
             
+             progress.titleLabelText = @"登录成功,即将登陆系统";
+            int64_t delayInSeconds = 1.0;
+            progress.mode = MRProgressOverlayViewModeCheckmark;
+            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                                          delayInSeconds * NSEC_PER_SEC);
+          
+            dispatch_after(delayTime, dispatch_get_main_queue(), ^(void){
+                ProfileController *ickImageViewController =
+                [self.storyboard instantiateViewControllerWithIdentifier:@"profile"];
+                [self presentViewController:ickImageViewController animated:YES completion:nil];
+                
+                [self.navigationController pushViewController:ickImageViewController animated:true];
+                [self removeFromParentViewController];
+                [progress dismiss:true];
+              
+            });
+
             
-            ProfileController *ickImageViewController =
-            [self.storyboard instantiateViewControllerWithIdentifier:@"profile"];
-            // [self presentViewController:ickImageViewController animated:YES completion:nil];
-            
-            [self.navigationController pushViewController:ickImageViewController animated:true];
-            [self removeFromParentViewController];
+          
 
         }
         else
