@@ -110,15 +110,18 @@
                                           delayInSeconds * NSEC_PER_SEC);
           
             dispatch_after(delayTime, dispatch_get_main_queue(), ^(void){
-                ProfileController *ickImageViewController =
-                [self.storyboard instantiateViewControllerWithIdentifier:@"profile"];
-                [self presentViewController:ickImageViewController animated:YES completion:nil];
+              
                 
-                [self.navigationController pushViewController:ickImageViewController animated:true];
-                [self removeFromParentViewController];
-                [progress dismiss:true];
+                            [progress dismiss:true];
               
             });
+            
+            
+            ProfileController *ickImageViewController =
+            [self.storyboard instantiateViewControllerWithIdentifier:@"profile"];
+           // [self presentViewController:ickImageViewController animated:YES completion:nil];
+            [self.navigationController pushViewController:ickImageViewController animated:true];
+            [self removeFromParentViewController];
 
             
           
