@@ -20,9 +20,14 @@
 @property MRProgressOverlayView* progress ;
 @property int currentSelectID;
 
+@property NSArray *arrary ;
+
 @end
 
 @implementation ProfileController
+
+
+@synthesize arrary;
 @synthesize  progress;
 @synthesize viewProfile;
 @synthesize image;
@@ -39,7 +44,9 @@
     
     [super viewDidLoad];
     
-   progress =  [MRProgressOverlayView showOverlayAddedTo:self.view animated:true];
+    arrary = [[NSArray alloc]initWithObjects:[YMCommon hexStringToColor:@"CF0001"],[YMCommon hexStringToColor:@"71aa00" ],[YMCommon hexStringToColor:@"f2931b" ],[YMCommon hexStringToColor: @"00b7ee" ], nil];
+    
+    progress =  [MRProgressOverlayView showOverlayAddedTo:self.view animated:true];
     progress.tintColor = [YMCommon hexStringToColor:@"CF0001"];
     progress.mode =MRProgressOverlayViewModeIndeterminate;
     progress.titleLabelText = @"加载中...";
@@ -83,7 +90,7 @@
         ContactController *ickImageViewController =
         [self.storyboard instantiateViewControllerWithIdentifier:@"contact"];
         // [self presentViewController:ickImageViewController animated:YES completion:nil];
-      //  ickImageViewController.ID = recognizer.view.tag;
+        //  ickImageViewController.ID = recognizer.view.tag;
         [self.navigationController pushViewController:ickImageViewController animated:true];
     }
     else
@@ -138,6 +145,9 @@
         [progress dismiss:true];
         if (arr != nil) {
             for (int i = 0; i<arr.count; i++) {
+                
+                int yushu = i % 4;
+                
                 YMProfileEntity* entity = [arr objectAtIndex:i];
                 
                 UIView* view = [[UIView alloc]init];
@@ -155,7 +165,7 @@
                 
                 
                 UIColor *testColor1=[YMCommon hexStringToColor:@"#fff"];
-                [view setBackgroundColor:[UIColor greenColor]];
+                [view setBackgroundColor:arrary[yushu]];
                 
                 UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(spImageX,spImageY ,spImageWidth, spImageWidth)];
                 
@@ -165,7 +175,7 @@
                 view.layer.masksToBounds = YES;
                 view.layer.cornerRadius = 5.0;
                 view.layer.borderWidth = 1.0;
-                view.layer.borderColor = [[YMCommon hexStringToColor:@"#000" ] CGColor];
+                view.layer.borderColor = [arrary[yushu] CGColor];
                 view.userInteractionEnabled = YES;
                 [image setImageWithURL:[NSURL URLWithString:imageUrl]];
                 [view addSubview:image];

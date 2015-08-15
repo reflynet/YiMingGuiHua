@@ -15,5 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIView *viewCity;
 @property (weak, nonatomic) IBOutlet UIButton *btnSearch;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellSearch;
+@property (strong, nonatomic) IBOutlet UILabel *lblProject;
+@property (strong, nonatomic) IBOutlet UILabel *lblStep;
+@property (strong, nonatomic) IBOutlet UILabel *lblCity;
 @property int ID;
 @end

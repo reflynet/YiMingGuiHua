@@ -26,7 +26,10 @@
 @synthesize delegate;
 
 - (void)viewDidLoad {
-
+    
+    UIEdgeInsets contentInsets = tableView.contentInset;
+    contentInsets.top = 20;
+    [tableView setContentInset:contentInsets];
     self.automaticallyAdjustsScrollViewInsets =false;
     self.navigationController.navigationBarHidden = false;
     tableView.dataSource = self;
@@ -58,7 +61,7 @@
     
   
     [self dismissViewControllerAnimated:true completion:^{
-         [self.delegate passValue:3 value:current.Name];
+         [self.delegate passValue:1 value:current.Name];
     }];
     
 }
@@ -78,7 +81,7 @@
     YMTypeListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YMTypeListIdentifiter" forIndexPath:indexPath];
     
     cell.lblTitle.text = current.Name;
-    
+    cell.accessoryType= UITableViewCellAccessoryCheckmark;
     return  cell;
 }
 @end
