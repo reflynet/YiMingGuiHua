@@ -17,7 +17,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.、
-    
+    UINavigationController* navti = self.window.rootViewController;
+   navti.navigationItem.leftBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@"返回"
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil
+                                    action:nil];
+[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];  
     return YES;
 }
 

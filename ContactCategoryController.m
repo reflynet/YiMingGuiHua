@@ -11,6 +11,7 @@
 #import "YMContactDepEntity.h"
 #import "YMTypeListCell.h"
 #import "ContactCustomerController.h"
+#import "YMCommon.h"
 @interface ContactCategoryController()
 @property BOOL isSelect;
 
@@ -58,7 +59,8 @@
         [self.tableView reloadData];
         
     }];
-    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
     //[tableView setContentInset:tableView.contentInset];
     
     
@@ -128,6 +130,7 @@
         }];
     }
     else{
+            [YMCommon setBackBtn:self.navigationItem];
         ContactCustomerController* nextC =
         [self.storyboard instantiateViewControllerWithIdentifier:@"ContactCustomer"];
         nextC.ID = entity.ID;

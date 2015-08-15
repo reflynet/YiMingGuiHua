@@ -22,6 +22,8 @@
  
     lblTitle.lineBreakMode = UILineBreakModeWordWrap;
     lblTitle.numberOfLines = 3;
+    
+    
 }
 
 @end

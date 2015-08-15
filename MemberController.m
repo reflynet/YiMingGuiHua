@@ -40,6 +40,7 @@
         self.lblTel.text = member.TelPhone;
         self.lblPhone.text = member.Phone;
         self.lblMail.text =member.Email;
+        self.btnSave.backgroundColor = [YMCommon hexStringToColor:@"CF0001"];
     }
     
     [super viewDidLoad];

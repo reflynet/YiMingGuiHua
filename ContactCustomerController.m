@@ -11,6 +11,7 @@
 #import "YMContactCustomerEntity.h"
 #import "YMTypeListCell.h"
 #import "MemberController.h"
+#import "YMCommon.h"
 @implementation ContactCustomerController
 @synthesize ID;
 @synthesize source;
@@ -39,13 +40,15 @@
         
         [self.tableView reloadData];
     }];
-    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
     [super viewDidLoad];
     
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+        [YMCommon setBackBtn:self.navigationItem];
     YMContactCustomerEntity* current = [ self.source objectAtIndex:indexPath.row];
   
     MemberController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"member"];

@@ -10,6 +10,7 @@
 #import "GmailLikeLoadingView.h"
 #import "YMProfileEntity.h"
 #import "MRProgress.h"
+#import "YMCommon.h"
 @interface ViewController ()
 
 @end
@@ -30,18 +31,15 @@
     self.navigationController.navigationBarHidden = true;
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:20/255.0 green:155/255.0 blue:213/255.0 alpha:1.0]];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor redColor]];
+    
+    
+    [[UINavigationBar appearance] setBarTintColor:[YMCommon hexStringToColor:@"CF0001"]];
     //@{}代表Dictionary
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     [super viewDidLoad];
     
     
-    GmailLikeLoadingView *loadingView = [[GmailLikeLoadingView alloc] initWithFrame:CGRectMake(5, 5, 50, 50)];
-    
-    [viewBg addSubview:loadingView];
-    
-    [loadingView startAnimating];
     
     [self setLayout];
     
@@ -65,19 +63,18 @@
     btnLogin.layer.masksToBounds = YES;
     btnLogin.layer.cornerRadius = 3.0;
     btnLogin.layer.borderWidth = 1.0;
-    btnLogin.layer.borderColor = [[UIColor whiteColor] CGColor];
-    
+    btnLogin.layer.borderColor = [[YMCommon hexStringToColor:@"CF0001"] CGColor];
+    btnLogin.backgroundColor =[YMCommon hexStringToColor:@"CF0001"];
     CGFloat imageWidth =imageLogo.frame.size.width;
     CGSize imagesize=CGSizeMake(imageWidth,imageWidth);
     
-    
-}
+    }
 
 - (IBAction)onLogin:(id)sender {
     
  // [MRProgressOverlayView showOverlayAddedTo:self.window animated:YES];
-   MRProgressOverlayView* progress =  [MRProgressOverlayView showOverlayAddedTo:self.view animated:true];
-    progress.tintColor = [UIColor redColor];
+    MRProgressOverlayView* progress =  [MRProgressOverlayView showOverlayAddedTo:self.view animated:true];
+    progress.tintColor = [YMCommon hexStringToColor:@"CF0001"];
     progress.mode =MRProgressOverlayViewModeIndeterminate;
     progress.titleLabelText = @"登录中...";
     
@@ -120,8 +117,11 @@
             ProfileController *ickImageViewController =
             [self.storyboard instantiateViewControllerWithIdentifier:@"profile"];
            // [self presentViewController:ickImageViewController animated:YES completion:nil];
-            [self.navigationController pushViewController:ickImageViewController animated:true];
+           [self.navigationController pushViewController:ickImageViewController animated:true];
+            
+             //self.performSegueWithIdentifier("profile", sender: nil)
             [self removeFromParentViewController];
+               //  self.dismissViewControllerAnimated(true, completion: nil)
 
             
           

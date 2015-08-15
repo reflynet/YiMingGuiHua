@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfileController : UIViewController
+@interface ProfileController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *imgAvatar;
 @property (weak, nonatomic) IBOutlet UIView *viewProfile;
 @property (strong, nonatomic) IBOutlet UILabel *lblName;

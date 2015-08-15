@@ -7,7 +7,7 @@
 //
 
 #import "ContactController.h"
-
+#import "YMCommon.h"
 @implementation ContactController
 @synthesize _contactController;
 @synthesize _linkManContrller;
@@ -28,9 +28,16 @@
     NSArray *array = [NSArray arrayWithObjects:@"通讯录",@"记录", nil];
     UISegmentedControl *segmentedController = [[UISegmentedControl alloc] initWithItems:array];
     segmentedController.segmentedControlStyle = UISegmentedControlSegmentCenter;
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor, nil,UITextAttributeFont ,[UIColor whiteColor],UITextAttributeTextShadowColor ,nil];
     
+   /* NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor, nil,UITextAttributeFont ,[UIColor whiteColor],UITextAttributeTextShadowColor ,nil];
+    
+   
     [segmentedController setTitleTextAttributes:dic forState:UIControlStateSelected];
+
+    */
+   // segmentedController.tintColor=[YMCommon hexStringToColor:@"fff"];
+    
+    [segmentedController setTitleTextAttributes:@{NSForegroundColorAttributeName:[YMCommon hexStringToColor:@"cf0001"]} forState:UIControlStateSelected];
     
     [segmentedController addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
     segmentedController.selectedSegmentIndex = 0;
@@ -42,6 +49,7 @@
     [self.view addSubview:_linkManContrller.view];
     self._linkManContrller.currentNav = self.navigationController;
     self._contactController.currentNav = self.navigationController;
+    self._linkManContrller.currentNavItem = self.navigationItem;
 
     [super viewDidLoad];
  

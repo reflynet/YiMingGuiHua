@@ -121,7 +121,10 @@
  qualifiedName:(NSString *)qName{
     if([elementName isEqualToString:@"item"])
     {
+        if(entity.Id>0)
+        {
         [result addObject:entity];
+        }
     }
 }
 

@@ -15,4 +15,6 @@
 +(NSString*) getServer;
 +(NSData*) getDataFromString:(NSString*) str;
 +(UIColor *) hexStringToColor: (NSString *) stringToConvert;
++(UIColor *)getColor:(NSString*)hexColor;
++(void)setBackBtn:(UINavigationItem*) nav;
 @end

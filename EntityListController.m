@@ -30,19 +30,11 @@
 
 -(IBAction) searchprogram:(id)sender
 {
-  // if(![txtSearch.text isEqualToString:@""])
-   //{
-       searchContent = txtSearch.text;
-       [self doneLoadingTableViewData];
- //  }
-   // else
-   // {
-    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入搜索内容" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
-     //   // optional - add more buttons:
-     //   [alert addButtonWithTitle:@"知道了"];
-      //  [alert show];
+    // if(![txtSearch.text isEqualToString:@""])
+    //{
+    searchContent = txtSearch.text;
+    [self doneLoadingTableViewData];
 
-    //}
 }
 
 
@@ -67,6 +59,8 @@
         view.delegate = self;
         [self.tableVIew addSubview:view];
         _loadMoreTableFooterView = view;
+        self.tableVIew.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
         //    [view release];
     }
     
@@ -90,17 +84,32 @@
     
     
     
-    tableVIew.rowHeight =85;
+    tableVIew.rowHeight =80;
     
     UINib *nib = [UINib nibWithNibName:@"YMEntityListController" bundle:nil];
     
     [tableVIew registerNib:nib forCellReuseIdentifier:@"EntityListIdentifier"];
     
     
-    [self doneLoadingTableViewData];
-    
+    //[self doneLoadingTableViewData];
+    [self showLoading:self.tableVIew];
     
 }
+
+- (void)showLoading:(UIScrollView *)scrollView{
+    //下拉刷新
+   // [self->_refreshHeaderView setState:EGOOPullRefreshLoading];
+    
+    [_refreshHeaderView setState:EGOOPullLoading];
+    [scrollView setContentOffset:CGPointMake(-0.0f, -60.0f)];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    scrollView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+    [UIView commitAnimations];
+    [self doneLoadingTableViewData];
+    
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -118,7 +127,13 @@
 {
     
     
-    return  [self.source count];
+    if(self.source == nil)
+    {
+        return  0;
+    }
+    else{
+        return  [self.source count];
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,8 +142,15 @@
     
     YMEntityListController *cell = [tableView dequeueReusableCellWithIdentifier:@"EntityListIdentifier" forIndexPath:indexPath];
     
+    //  cell.lblTitle.layer.frame.size =
+    [cell.lblTitle.layer setFrame: CGRectMake(10.f,3.f,cell.layer.frame.size.width-40,50)];
+    cell.lblTitle.numberOfLines =0;
+    [cell.lblTime.layer setFrame: CGRectMake(10.f,55.f,cell.layer.frame.size.width,20)];
+    //[cell.lblTitle sizeToFit];
     cell.lblTitle.text = current.Title;
-cell.lblTime.text = current.InputTime;
+    cell.lblTime.text = current.InputTime;
+    cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
+    
     return  cell;
 }
 
@@ -160,28 +182,29 @@ cell.lblTime.text = current.InputTime;
 //加载数据
 
 - (void)doneLoadingTableViewData{
-      self.IsLoadedAll = false;
+    self.IsLoadedAll = false;
     self.Page =1 ;
     YMItemDeleage *delete = [[YMItemDeleage alloc]init];
     [delete getData:self.ID page:self.Page key:self.searchContent m:self.Table Att:@"internal" compete:^(NSMutableArray *arr) {
         
         [self.source removeAllObjects];
         [self.source addObjectsFromArray:arr];
-
+       
         [self.tableVIew reloadData];
         [self layoutSubviews];
-        
-        if([arr count] <10)
+      
+         if([arr count] <10)
         {
             [_loadMoreTableFooterView setState:EGOPullLoaded];
             self.IsLoadedAll = true;
         }
-
+        
+        
     } ];
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableVIew];
     [_loadMoreTableFooterView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableVIew];
-
+    
     
 }
 
@@ -190,11 +213,11 @@ cell.lblTime.text = current.InputTime;
     self.Page = self.Page+1;
     YMItemDeleage *delete = [[YMItemDeleage alloc]init];
     [delete getData:self.ID page:self.Page key:@"" m:self.Table Att:@"internal" compete:^(NSMutableArray *arr) {
-
+        
         
         [self.source addObjectsFromArray:arr];
         
-            [self.tableVIew reloadData];
+        [self.tableVIew reloadData];
         //[self.tableVIew insertRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationAutomatic];
         [self layoutSubviews];
         
@@ -203,7 +226,7 @@ cell.lblTime.text = current.InputTime;
             [_loadMoreTableFooterView setState:EGOPullLoaded];
             self.IsLoadedAll = true;
         }
-   
+        
         
     }];
     _reloading = NO;
@@ -224,7 +247,7 @@ cell.lblTime.text = current.InputTime;
     
     if(!self.IsLoadedAll)
     {
-    [_loadMoreTableFooterView egoRefreshScrollViewDidScroll:scrollView];
+        [_loadMoreTableFooterView egoRefreshScrollViewDidScroll:scrollView];
     }
     
     
@@ -235,7 +258,7 @@ cell.lblTime.text = current.InputTime;
     
     if(!self.IsLoadedAll)
     {
-    [_loadMoreTableFooterView egoRefreshScrollViewDidEndDragging:scrollView];
+        [_loadMoreTableFooterView egoRefreshScrollViewDidEndDragging:scrollView];
     }
     
 }
@@ -273,10 +296,10 @@ cell.lblTime.text = current.InputTime;
 
 - (void)loadMoreTableFooterDidTriggerLoadMore:(LoadMoreTableFooterView *)view {
     
-
-       [self performSelector:@selector(moreLoadingTableViewData) withObject:nil afterDelay:3.0];
     
-  
+    [self performSelector:@selector(moreLoadingTableViewData) withObject:nil afterDelay:3.0];
+    
+    
     
 }
 
@@ -284,9 +307,9 @@ cell.lblTime.text = current.InputTime;
     
     if(!self.IsLoadedAll)
     {
-
-    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
-    
+        
+        [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+        
     }
     return _reloading;
 }

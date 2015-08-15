@@ -12,18 +12,24 @@
 #import "YMTypeListCell.h"
 #import "YMContactCustomerEntity.h"
 #import "MemberController.h"
-
+#import "MRProgress.h"
+#import "YMCommon.h"
 @implementation LinkManController
 @synthesize currentNav;
 @synthesize tableView;
 @synthesize data;
 @synthesize keys;
-
+@synthesize currentNavItem;
 -(void)loadView
 {
-       [super loadView];
+    [super loadView];
   
-   self.tableView.dataSource = self;
+    MRProgressOverlayView* progress =  [MRProgressOverlayView showOverlayAddedTo:self.view animated:true];
+    progress.tintColor = [YMCommon hexStringToColor:@"CF0001"];
+    progress.mode =MRProgressOverlayViewModeIndeterminate;
+    progress.titleLabelText = @"加载中...";
+
+    self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
     UINib *nib = [UINib nibWithNibName:@"YMTypeListCell" bundle:nil];
@@ -31,12 +37,12 @@
     [tableView registerNib:nib forCellReuseIdentifier:@"YMTypeListIdentifiter"];
     
     keys = [[NSMutableArray alloc]init];
- 
+    
     
     YMContactDeleage* del = [[YMContactDeleage alloc]init];
     [del getData:^(NSMutableArray *arr) {
         data = [del convertToDictionaryByResult:arr];
-        
+        [progress dismiss:true];
         NSEnumerator * enumeratorKey = [data keyEnumerator];
         
         //快速枚举遍历所有KEY的值
@@ -49,14 +55,15 @@
             return [str1 compare:str2];
         }];
         
-     [self.tableView reloadData];
+        [self.tableView reloadData];
         
     }];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [tableView setContentInset:tableView.contentInset];
     
     
- 
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -78,7 +85,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    
     YMTypeListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YMTypeListIdentifiter" forIndexPath:indexPath];
     
     NSString* key = self.keys[ indexPath.section];
@@ -87,7 +94,7 @@
     cell.lblTitle.text = entity.RealName;
     
     return  cell;
-
+    
 }
 
 -(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
@@ -109,8 +116,8 @@
     member.Email = entity.Email;
     member.Job = entity.Job;
     member.Department = entity.Department;
- 
     
+        [YMCommon setBackBtn:self.currentNavItem];
     MemberController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"member"];
     controller.member =member;
     [self.currentNav pushViewController:controller animated:true];

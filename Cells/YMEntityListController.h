@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface YMEntityListController : UITableViewCell
-@property (strong, nonatomic) IBOutlet UILabel *lblTitle;
-@property (strong, nonatomic) IBOutlet UILabel *lblTime;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblTime;
 
 @end

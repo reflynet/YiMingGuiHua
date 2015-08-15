@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "PassValueDelegate.h"
-@interface ProjectContrller : UIViewController<PassValueDelegate>
-
+@interface ProjectContrller : UITableViewController<PassValueDelegate>
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellCity;
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellPro;
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellDDD;
 @property (weak, nonatomic) IBOutlet UIView *viewCity;
+@property (weak, nonatomic) IBOutlet UIButton *btnSearch;
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellSearch;
 @property int ID;
 @end

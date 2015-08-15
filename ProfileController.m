@@ -7,6 +7,7 @@
 //
 
 #import "ProfileController.h"
+#import "MRProgress.h"
 #import "YMCommon.h"
 #import "YMProfileDeleage.h"
 #import "YMProfileEntity.h"
@@ -16,12 +17,13 @@
 #import "ContactController.h"
 @interface ProfileController()
 @property NSString* image ;
+@property MRProgressOverlayView* progress ;
 @property int currentSelectID;
 
 @end
 
 @implementation ProfileController
-
+@synthesize  progress;
 @synthesize viewProfile;
 @synthesize image;
 @synthesize lblJob;
@@ -36,6 +38,11 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+   progress =  [MRProgressOverlayView showOverlayAddedTo:self.view animated:true];
+    progress.tintColor = [YMCommon hexStringToColor:@"CF0001"];
+    progress.mode =MRProgressOverlayViewModeIndeterminate;
+    progress.titleLabelText = @"加载中...";
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -70,6 +77,7 @@
 -(void)SingleTap:(UITapGestureRecognizer*)recognizer
 {
     YMUITapGestureRecognizer *tap = (YMUITapGestureRecognizer *)recognizer;
+    [YMCommon setBackBtn:self.navigationItem];
     if([tap.Expend isEqualToString:@"address"])
     {
         ContactController *ickImageViewController =
@@ -87,6 +95,8 @@
             [self.storyboard instantiateViewControllerWithIdentifier:@"project"];
             // [self presentViewController:ickImageViewController animated:YES completion:nil];
             ickImageViewController.ID = recognizer.view.tag;
+            
+            
             [self.navigationController pushViewController:ickImageViewController animated:true];
         }
         else
@@ -95,6 +105,9 @@
             [self.storyboard instantiateViewControllerWithIdentifier:@"typelist"];
             // [self presentViewController:ickImageViewController animated:YES completion:nil];
             ickImageViewController.ID = recognizer.view.tag;
+            
+            
+            
             [self.navigationController pushViewController:ickImageViewController animated:true];
         }
     }
@@ -122,7 +135,7 @@
     
     YMProfileDeleage*  ymProfileDeleage = [[YMProfileDeleage alloc]init];
     [ymProfileDeleage getData :0 compete:^(NSMutableArray* arr){
-        
+        [progress dismiss:true];
         if (arr != nil) {
             for (int i = 0; i<arr.count; i++) {
                 YMProfileEntity* entity = [arr objectAtIndex:i];
