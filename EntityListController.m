@@ -16,7 +16,7 @@
 #import "YMChannelItem.h"
 #import "YMEntityListController.h"
 #import "EntityListController.h"
-
+#import "YMSelectProjectDeleage.h"
 @implementation EntityListController
 @synthesize source;
 @synthesize ID;
@@ -26,7 +26,9 @@
 @synthesize IsLoadedAll;
 @synthesize searchContent;
 @synthesize txtSearch;
-
+@synthesize city;
+@synthesize projectType;
+@synthesize projectStep;
 
 -(IBAction) searchprogram:(id)sender
 {
@@ -34,12 +36,20 @@
     //{
     searchContent = txtSearch.text;
     [self doneLoadingTableViewData];
-
+    
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if(self.Table == @"project")
+    {
+        //txtSearch.hidden=true;
+        
+        //  self.tableVIew.frame =CGRectMake(0,0, self.tableVIew.layer.bounds.size.width, self.tableVIew.layer.bounds.size.height+50);
+    }
+    
     self.searchContent =@"";
     UIBarButtonItem *barbtn=[[UIBarButtonItem alloc] initWithImage:nil style:UIBarButtonItemStyleDone target:self action:@selector(searchprogram:)];
     barbtn.title =@"搜索";
@@ -60,7 +70,7 @@
         [self.tableVIew addSubview:view];
         _loadMoreTableFooterView = view;
         self.tableVIew.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
+        
         //    [view release];
     }
     
@@ -98,7 +108,7 @@
 
 - (void)showLoading:(UIScrollView *)scrollView{
     //下拉刷新
-   // [self->_refreshHeaderView setState:EGOOPullRefreshLoading];
+    // [self->_refreshHeaderView setState:EGOOPullRefreshLoading];
     
     [_refreshHeaderView setState:EGOOPullLoading];
     [scrollView setContentOffset:CGPointMake(-0.0f, -60.0f)];
@@ -184,23 +194,51 @@
 - (void)doneLoadingTableViewData{
     self.IsLoadedAll = false;
     self.Page =1 ;
-    YMItemDeleage *delete = [[YMItemDeleage alloc]init];
-    [delete getData:self.ID page:self.Page key:self.searchContent m:self.Table Att:@"internal" compete:^(NSMutableArray *arr) {
+    
+    
+    if (![Table isEqualToString:@"project"]) {
+        YMItemDeleage *delete = [[YMItemDeleage alloc]init];
+        [delete getData:self.ID page:self.Page key:self.searchContent m:self.Table Att:@"internal" compete:^(NSMutableArray *arr) {
+            
+            [self.source removeAllObjects];
+            [self.source addObjectsFromArray:arr];
+            
+            [self.tableVIew reloadData];
+            [self layoutSubviews];
+            
+            if([arr count] <10)
+            {
+                [_loadMoreTableFooterView setState:EGOPullLoaded];
+                self.IsLoadedAll = true;
+            }
+            
+            
+        } ];
+    }
+    
+    
+    else
+    {
         
-        [self.source removeAllObjects];
-        [self.source addObjectsFromArray:arr];
-       
-        [self.tableVIew reloadData];
-        [self layoutSubviews];
-      
-         if([arr count] <10)
-        {
-            [_loadMoreTableFooterView setState:EGOPullLoaded];
-            self.IsLoadedAll = true;
-        }
+        YMSelectProjectDeleage *delete = [[YMSelectProjectDeleage alloc]init];
+        [delete getData:20 page:self.Page key:txtSearch.text city:self.city type:self.projectType pStatus:self.projectStep compete:^(NSMutableArray *arr) {
+            
+            [self.source removeAllObjects];
+            [self.source addObjectsFromArray:arr];
+            
+            [self.tableVIew reloadData];
+            [self layoutSubviews];
+            
+            if([arr count] <10)
+            {
+                [_loadMoreTableFooterView setState:EGOPullLoaded];
+                self.IsLoadedAll = true;
+            }
+            
+        }];
         
         
-    } ];
+    }
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableVIew];
     [_loadMoreTableFooterView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableVIew];
@@ -211,24 +249,46 @@
 - (void)moreLoadingTableViewData{
     
     self.Page = self.Page+1;
-    YMItemDeleage *delete = [[YMItemDeleage alloc]init];
-    [delete getData:self.ID page:self.Page key:@"" m:self.Table Att:@"internal" compete:^(NSMutableArray *arr) {
+    
+    if (![Table isEqualToString:@"project"]) {
+        YMItemDeleage *delete = [[YMItemDeleage alloc]init];
+        [delete getData:self.ID page:self.Page key:@"" m:self.Table Att:@"internal" compete:^(NSMutableArray *arr) {
+            
+            
+            [self.source addObjectsFromArray:arr];
+            
+            [self.tableVIew reloadData];
+            //[self.tableVIew insertRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self layoutSubviews];
+            
+            if([arr count] <10)
+            {
+                [_loadMoreTableFooterView setState:EGOPullLoaded];
+                self.IsLoadedAll = true;
+            }
+            
+            
+        }];
+    }
+    else{
+        YMSelectProjectDeleage *delete = [[YMSelectProjectDeleage alloc]init];
+        [delete getData:20 page:self.Page key:txtSearch.text city:self.city type:self.projectType pStatus:self.projectStep compete:^(NSMutableArray *arr) {
+            
+            [self.source removeAllObjects];
+            [self.source addObjectsFromArray:arr];
+            
+            [self.tableVIew reloadData];
+            [self layoutSubviews];
+            
+            if([arr count] <10)
+            {
+                [_loadMoreTableFooterView setState:EGOPullLoaded];
+                self.IsLoadedAll = true;
+            }
+            
+        }];
         
-        
-        [self.source addObjectsFromArray:arr];
-        
-        [self.tableVIew reloadData];
-        //[self.tableVIew insertRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self layoutSubviews];
-        
-        if([arr count] <10)
-        {
-            [_loadMoreTableFooterView setState:EGOPullLoaded];
-            self.IsLoadedAll = true;
-        }
-        
-        
-    }];
+    }
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableVIew];
     [_loadMoreTableFooterView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableVIew];

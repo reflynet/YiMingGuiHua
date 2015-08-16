@@ -12,6 +12,7 @@
 #import "CityController.h"
 #import "YMCommon.h"
 #import "ProjectStepViewController.h"
+#import "EntityListController.h"
 @interface ProjectContrller()
 {
     NSString* selectCity;
@@ -27,6 +28,8 @@
 @synthesize ID;
 @synthesize viewCity;
 @synthesize cellCity;
+@synthesize projectType;
+@synthesize  projectStep;
 @synthesize cellDDD;
 @synthesize cellPro;
 @synthesize cellSearch;
@@ -42,7 +45,9 @@
     
     
     [super viewDidLoad];
-    
+    selectCity= @"";
+    projectType=  @"";
+    projectStep=  @"";
     btnSearch.backgroundColor = [YMCommon hexStringToColor:@"CF0001"];
     btnSearch.layer.cornerRadius = 3.0;
     btnSearch.layer.borderWidth = 1.0;
@@ -146,16 +151,16 @@
     }
     if(type == 2)
     {
-        selectCity = value;
+        projectType = value;
         lblProject.text = value;
     }
     if(type == 3)
     {
-        selectCity = value;
+        projectStep = value;
         lblStep.text = value;
     }
     
-    NSLog(@"get backcall value=%@",value);
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -167,4 +172,16 @@
     return 4;
 }
 
+- (IBAction)login:(id)sender {
+    EntityListController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"EntityList"];
+    // controller.ID = current.Id;
+    controller.Table = @"project";
+    controller.city = selectCity;
+    controller.projectType = projectType;
+    controller.projectStep = projectStep;
+    [YMCommon setBackBtn:self.navigationItem];
+    [self.navigationController pushViewController:controller animated:true];
+    
+    
+}
 @end

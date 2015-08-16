@@ -279,6 +279,9 @@
                                                     <state key="normal" title="搜索">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="login:" destination="UdL-aV-vcW" eventType="touchUpInside" id="8pP-CI-hBr"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
