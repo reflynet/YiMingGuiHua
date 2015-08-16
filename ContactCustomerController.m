@@ -29,7 +29,7 @@
 
     YMContactCustomerDeleteage *delete = [[YMContactCustomerDeleteage alloc]init];
     
-    tableView.rowHeight = 65;
+    tableView.rowHeight = 80.f;
     
     UINib *nib = [UINib nibWithNibName:@"YMContactTableCell" bundle:nil];
     
