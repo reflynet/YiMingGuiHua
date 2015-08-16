@@ -9,11 +9,12 @@
 #import "LinkManController.h"
 #import "YMContactDeleage.h"
 #import "YMContactEntity.h"
-#import "YMTypeListCell.h"
+#import "YMContactTableCell.h"
 #import "YMContactCustomerEntity.h"
 #import "MemberController.h"
 #import "MRProgress.h"
 #import "YMCommon.h"
+#import <ImageLoader/UIImageView+ImageLoader.h>
 @implementation LinkManController
 @synthesize currentNav;
 @synthesize tableView;
@@ -23,18 +24,19 @@
 -(void)loadView
 {
     [super loadView];
-  
+    
     MRProgressOverlayView* progress =  [MRProgressOverlayView showOverlayAddedTo:self.view animated:true];
     progress.tintColor = [YMCommon hexStringToColor:@"CF0001"];
     progress.mode =MRProgressOverlayViewModeIndeterminate;
     progress.titleLabelText = @"加载中...";
-
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.rowHeight = 80.f;
     
-    UINib *nib = [UINib nibWithNibName:@"YMTypeListCell" bundle:nil];
+    UINib *nib = [UINib nibWithNibName:@"YMContactTableCell" bundle:nil];
     
-    [tableView registerNib:nib forCellReuseIdentifier:@"YMTypeListIdentifiter"];
+    [tableView registerNib:nib forCellReuseIdentifier:@"YMContactIdntifier"];
     
     keys = [[NSMutableArray alloc]init];
     
@@ -86,12 +88,22 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    YMTypeListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YMTypeListIdentifiter" forIndexPath:indexPath];
+    YMContactTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YMContactIdntifier" forIndexPath:indexPath];
     
     NSString* key = self.keys[ indexPath.section];
     NSMutableArray* dataSection = self.data[key];
     YMContactEntity *entity =  dataSection[indexPath.row];
     cell.lblTitle.text = entity.RealName;
+    cell.lblDesc.text = [NSString stringWithFormat:@"%@/%@",entity.Job,entity.Department];
+    NSString* image =  [[YMCommon getServer] stringByAppendingString: entity.FacePhoto ];
+    
+    cell.imgAvatar.layer.cornerRadius = cell.imgAvatar.frame.size.width / 2;
+    cell.imgAvatar.clipsToBounds = YES;
+    cell.imgAvatar.layer.borderWidth = 1.0f;
+    cell.imgAvatar.layer.borderColor = [UIColor whiteColor].CGColor;
+ 
+    [cell.imgAvatar setImageWithURL:[NSURL URLWithString:image]];
+
     
     return  cell;
     
@@ -116,8 +128,9 @@
     member.Email = entity.Email;
     member.Job = entity.Job;
     member.Department = entity.Department;
-    
-        [YMCommon setBackBtn:self.currentNavItem];
+    member.TelPhone = entity.TelPhone;
+    member.Phone = entity.Phone;
+    [YMCommon setBackBtn:self.currentNavItem];
     MemberController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"member"];
     controller.member =member;
     [self.currentNav pushViewController:controller animated:true];

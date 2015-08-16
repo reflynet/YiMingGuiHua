@@ -9,9 +9,10 @@
 #import "ContactCustomerController.h"
 #import "YMContactCustomerDeleteage.h"
 #import "YMContactCustomerEntity.h"
-#import "YMTypeListCell.h"
+#import "YMContactTableCell.h"
 #import "MemberController.h"
 #import "YMCommon.h"
+#import <ImageLoader/UIImageView+ImageLoader.h>
 @implementation ContactCustomerController
 @synthesize ID;
 @synthesize source;
@@ -30,9 +31,9 @@
     
     tableView.rowHeight = 65;
     
-    UINib *nib = [UINib nibWithNibName:@"YMTypeListCell" bundle:nil];
+    UINib *nib = [UINib nibWithNibName:@"YMContactTableCell" bundle:nil];
     
-    [tableView registerNib:nib forCellReuseIdentifier:@"YMTypeListIdentifiter"];
+    [tableView registerNib:nib forCellReuseIdentifier:@"YMContactIdntifier"];
     
     [delete getData:self.ID compete:^(NSMutableArray *arr) {
         
@@ -70,10 +71,18 @@
 {
     YMContactCustomerEntity* current = [ self.source objectAtIndex:indexPath.row];
     
-    YMTypeListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YMTypeListIdentifiter" forIndexPath:indexPath];
+    YMContactTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YMContactIdntifier" forIndexPath:indexPath];
     
     cell.lblTitle.text = current.RealName;
+    cell.lblDesc.text = [NSString stringWithFormat:@"%@/%@",current.Job,current.Department];
+    NSString* image =  [[YMCommon getServer] stringByAppendingString: current.FacePhoto ];
     
+    cell.imgAvatar.layer.cornerRadius = cell.imgAvatar.frame.size.width / 2;
+    cell.imgAvatar.clipsToBounds = YES;
+    cell.imgAvatar.layer.borderWidth = 1.0f;
+    cell.imgAvatar.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    [cell.imgAvatar setImageWithURL:[NSURL URLWithString:image]];
     return  cell;
 }
 

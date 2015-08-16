@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPhone;
 @property (weak, nonatomic) IBOutlet UILabel *lblMail;
 @property (weak, nonatomic) IBOutlet UIButton *btnSave;
+- (IBAction)save:(id)sender;
 
 @end

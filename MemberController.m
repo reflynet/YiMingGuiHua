@@ -9,11 +9,13 @@
 #import "MemberController.h"
 #import "YMContactCustomerEntity.h"
 #import "YMCommon.h"
+#import "MRProgress.h"
 @interface MemberController ()
-
+@property MRProgressOverlayView* progress;
 @end
 
 @implementation MemberController
+@synthesize progress;
 @synthesize  member;
 @synthesize  imgHead;
 @synthesize  lblRealName;
@@ -62,4 +64,24 @@
 }
 */
 
+- (IBAction)save:(id)sender {
+    [YMCommon saveAddress:member.RealName tel:member.TelPhone phone:member.Phone];
+    
+    progress =  [MRProgressOverlayView showOverlayAddedTo:self.view animated:true];
+    progress.tintColor = [YMCommon hexStringToColor:@"CF0001"];
+    progress.mode =MRProgressOverlayViewModeCheckmark;
+    progress.titleLabelText = @"保存成功";
+         int64_t delayInSeconds = 3.0;
+       dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW,
+                                              delayInSeconds * NSEC_PER_SEC);
+    
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^(void){
+        
+        
+        [progress dismiss:true];
+        
+    });
+
+
+}
 @end

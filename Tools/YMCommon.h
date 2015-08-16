@@ -17,4 +17,5 @@
 +(UIColor *) hexStringToColor: (NSString *) stringToConvert;
 +(UIColor *)getColor:(NSString*)hexColor;
 +(void)setBackBtn:(UINavigationItem*) nav;
++(void)saveAddress:(NSString*)userName tel:(NSString*)tel phone:(NSString*)phohe;
 @end
