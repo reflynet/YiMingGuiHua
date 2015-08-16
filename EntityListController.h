@@ -25,6 +25,11 @@ EGORefreshTableHeaderDelegate,LoadMoreTableFooterDelegate>
 @property BOOL IsLoadedAll;
 @property NSMutableArray* source;
 @property NSString *searchContent;
+
+@property NSString* city;
+@property NSString* projectType;
+@property NSString* projectStep;
+
 @property (strong, nonatomic) IBOutlet UITableView *tableVIew;
 
 @property (strong, nonatomic) IBOutlet UISearchBar *txtSearch;
