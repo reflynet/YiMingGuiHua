@@ -22,13 +22,54 @@
 @synthesize imageLogo;
 @synthesize viewBg;
 @synthesize loginController;
-
+@synthesize cbRe;
 @synthesize ymProfileDeleage;
 @synthesize ymLoginDeleage;
+@synthesize Remeber;
+@synthesize txtPwd;
+@synthesize txtUserName;
+-(void)teleButtonEvent:(UITapGestureRecognizer*)recognizer
+{
+    if(Remeber == YES)
+    {
+        [cbRe setImage:[UIImage imageNamed:@"checkbox-off"]];
+        Remeber = NO;
+
+    }
+    else{
+        
+        [cbRe setImage:[UIImage imageNamed:@"checkbox-on"]];
+        Remeber = YES;
+        
+        
+    }
+}
 
 - (void)viewDidLoad {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [txtPwd setSecureTextEntry:YES];
+    //存储时，除NSNumber类型使用对应的类型意外，其他的都是使用setObject:forKey:
+    BOOL* rember  =  [userDefaults boolForKey:@"ym_customer_remember"];
+    if(rember == YES)
+    {
+        [cbRe setImage:[UIImage imageNamed:@"checkbox-on"]];
+        txtUserName.text =[userDefaults valueForKey:@"ym_customer_remember_u"];
+        txtPwd.text =[userDefaults valueForKey:@"ym_customer_remember_P"];
+        Remeber = YES;
+    }
+    else
+    {
+      [cbRe setImage:[UIImage imageNamed:@"checkbox-off"]];
+        Remeber = NO;
+    }
+    UITapGestureRecognizer *tapGestureTel= [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(teleButtonEvent:)];
     
-  
+    //[telephoneLabel addGestureRecognizer:tapGestureTel];
+
+    tapGestureTel.numberOfTouchesRequired = 1; //手指数
+    cbRe.userInteractionEnabled = true;
+    [cbRe addGestureRecognizer:tapGestureTel];
+
     self.navigationController.navigationBarHidden = true;
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:20/255.0 green:155/255.0 blue:213/255.0 alpha:1.0]];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil]];
@@ -39,9 +80,6 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     [super viewDidLoad];
-    
-    
-    
     [self setLayout];
     
     
@@ -90,6 +128,7 @@
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         //存储时，除NSNumber类型使用对应的类型意外，其他的都是使用setObject:forKey:
+           [userDefaults setInteger: res.ID forKey:@"ym_customer_id"];
         [userDefaults setValue:res.TrueName forKey:@"ym_customer_truename"];
         [userDefaults setValue:res.Job forKey:@"ym_customer_job"];
                 [userDefaults setValue:res.GradeName forKey:@"ym_customer_grade"];
@@ -100,6 +139,17 @@
         
         if(res != nil)
         {
+            
+            if(Remeber == YES)
+            {
+            
+                 [userDefaults setBool:YES forKey:@"ym_customer_remember"];
+                      [userDefaults setValue:@"18202812576" forKey:@"ym_customer_remember_u"];
+                      [userDefaults setValue:@"123456789" forKey:@"ym_customer_remember_P"];
+            }
+            else{
+                 [userDefaults setBool:NO forKey:@"ym_customer_remember"];
+            }
             
              progress.titleLabelText = @"登录成功,即将登陆系统";
             int64_t delayInSeconds = 1.0;

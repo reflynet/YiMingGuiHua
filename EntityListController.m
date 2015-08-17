@@ -29,7 +29,7 @@
 @synthesize city;
 @synthesize projectType;
 @synthesize projectStep;
-
+@synthesize Title;
 -(IBAction) searchprogram:(id)sender
 {
     // if(![txtSearch.text isEqualToString:@""])
@@ -42,7 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationItem.title = Title;
     if(self.Table == @"project")
     {
         //txtSearch.hidden=true;
@@ -110,12 +110,13 @@
     //下拉刷新
     // [self->_refreshHeaderView setState:EGOOPullRefreshLoading];
     
-    [_refreshHeaderView setState:EGOOPullLoading];
+    
     [scrollView setContentOffset:CGPointMake(-0.0f, -60.0f)];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
     scrollView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
     [UIView commitAnimations];
+   [_refreshHeaderView setState:EGOOPullLoading];
     [self doneLoadingTableViewData];
     
 }

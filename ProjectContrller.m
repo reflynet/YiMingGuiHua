@@ -5,7 +5,7 @@
 //  Created by weiwei wei on 15/8/10.
 //  Copyright (c) 2015年 reflynet. All rights reserved.
 //
-
+#import "TongjiController.h"
 #import "ProjectContrller.h"
 #import "ProjectTypeViewController.h"
 #import "YMUITapGestureRecognizer.h"
@@ -38,13 +38,25 @@
 @synthesize lblProject;
 @synthesize lblCity;
 @synthesize lblStep;
+@synthesize Title;
+-(IBAction) searchprogram:(id)sender
+{
+    TongjiController *ickImageViewController =
+    [self.storyboard instantiateViewControllerWithIdentifier:@"tongji"];
+    [self.navigationController pushViewController:ickImageViewController animated:true];
 
+    }
 
 
 - (void)viewDidLoad {
     
     
     [super viewDidLoad];
+    
+      UIBarButtonItem *barbtn=[[UIBarButtonItem alloc] initWithImage:nil style:UIBarButtonItemStyleDone target:self action:@selector(searchprogram:)];
+    barbtn.title =@"项目统计";
+    self.navigationItem.rightBarButtonItem = barbtn;
+
     selectCity= @"";
     projectType=  @"";
     projectStep=  @"";
@@ -97,6 +109,7 @@
     cellPro.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
     [cellSearch setBackgroundColor:[UIColor clearColor]];
     // cellSearch.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.navigationItem.title = Title;
 }
 
 -(void)SingleTap:(UITapGestureRecognizer*)recognizer

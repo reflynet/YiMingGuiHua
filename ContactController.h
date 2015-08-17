@@ -16,4 +16,5 @@
 @property ContactCategoryController* _contactController;
 @property LinkManController* _linkManContrller;
 @property CityController* _city;
+@property NSString* Title;
 @end

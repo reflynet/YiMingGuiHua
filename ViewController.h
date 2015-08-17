@@ -21,9 +21,12 @@
 @property (nonatomic, strong)  YMProfileDeleage* ymProfileDeleage;
 @property (nonatomic, strong)  YMLoginDeleage* ymLoginDeleage;
 
+@property (weak, nonatomic) IBOutlet UITextField *txtUserName;
+@property (weak, nonatomic) IBOutlet UITextField *txtPwd;
 
 @property (strong, nonatomic) ViewController *loginController;
-
+@property (weak, nonatomic) IBOutlet UIImageView *cbRe;
+@property BOOL Remeber;
 - (IBAction)onLogin:(id)sender;
 
 @end

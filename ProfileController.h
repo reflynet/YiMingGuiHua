@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIView *viewProfile;
 @property (strong, nonatomic) IBOutlet UILabel *lblName;
 @property (strong, nonatomic) IBOutlet UILabel *lblJob;
+@property (weak, nonatomic) IBOutlet UILabel *lblGroup;
 
 @end

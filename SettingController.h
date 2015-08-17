@@ -11,5 +11,6 @@
 @interface SettingController : UITableViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellResetPwd;
 
 @end

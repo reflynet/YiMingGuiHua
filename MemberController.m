@@ -78,6 +78,8 @@
     // Do any additional setup after loading the view.
 }
 
+
+
 -(void)teleButtonEvent:(UITapGestureRecognizer*)recognizer
 {
     YMUITapGestureRecognizer *tap = (YMUITapGestureRecognizer *)recognizer;
@@ -90,8 +92,6 @@
     {
         viewD.hidden = false;
     }
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -21,10 +21,11 @@
 @synthesize data;
 @synthesize keys;
 @synthesize currentNavItem;
+
 -(void)loadView
 {
     [super loadView];
-    
+    self.navigationItem.title =@"用户资料";
     MRProgressOverlayView* progress =  [MRProgressOverlayView showOverlayAddedTo:self.view animated:true];
     progress.tintColor = [YMCommon hexStringToColor:@"CF0001"];
     progress.mode =MRProgressOverlayViewModeIndeterminate;

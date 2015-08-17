@@ -11,5 +11,6 @@
 @interface YMUITapGestureRecognizer : UITapGestureRecognizer
 @property NSString* Expend;
 @property NSString* Table;
+@property NSString* Title;
 
 @end

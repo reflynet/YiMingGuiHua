@@ -11,7 +11,7 @@
 @interface TypeListController : UIViewController
 <UITableViewDataSource,UITableViewDelegate>
 
-
+@property NSString* Title;
 @property int ID;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray* source;

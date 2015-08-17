@@ -18,7 +18,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblProject;
 @property (strong, nonatomic) IBOutlet UILabel *lblStep;
 @property (strong, nonatomic) IBOutlet UILabel *lblCity;
-
+@property (weak, nonatomic)NSString* Title;
 @property NSString* projectType;
 @property NSString* projectStep;
 - (IBAction)login:(id)sender;

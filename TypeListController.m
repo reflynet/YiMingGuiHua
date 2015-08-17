@@ -22,6 +22,7 @@
 
 
 @implementation TypeListController
+@synthesize Title;
 @synthesize source;
 @synthesize ID;
 @synthesize tableView;
@@ -33,12 +34,13 @@
     progress.tintColor = [YMCommon hexStringToColor:@"CF0001"];
     progress.mode =MRProgressOverlayViewModeIndeterminate;
     progress.titleLabelText = @"加载中...";
-
+   // self.navigationController.title = Title;
     
     
     self.automaticallyAdjustsScrollViewInsets =false;
     self.navigationController.navigationBarHidden = false;
-    
+    self.navigationItem.title = Title;
+
     
     YMProfileDeleage *delete = [[YMProfileDeleage alloc]init];
     
@@ -67,9 +69,10 @@
     EntityListController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"EntityList"];
     controller.ID = current.Id;
     controller.Table = current.Table;
-    
+    controller.Title = current.CateName;
     [YMCommon setBackBtn:self.navigationItem];
     [self.navigationController pushViewController:controller animated:true];
+   
     
     
 }

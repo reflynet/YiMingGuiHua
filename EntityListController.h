@@ -29,7 +29,7 @@ EGORefreshTableHeaderDelegate,LoadMoreTableFooterDelegate>
 @property NSString* city;
 @property NSString* projectType;
 @property NSString* projectStep;
-
+@property NSString* Title;
 @property (strong, nonatomic) IBOutlet UITableView *tableVIew;
 
 @property (strong, nonatomic) IBOutlet UISearchBar *txtSearch;

@@ -12,11 +12,11 @@
 @synthesize _contactController;
 @synthesize _linkManContrller;
 @synthesize _city;
-
+@synthesize Title;
 -(void)viewDidLoad
 {
     
-    
+     self.navigationController.title = Title;
    
  
    [self.view setBounds:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y-self.navigationController.navigationBar.frame.size.height-12,

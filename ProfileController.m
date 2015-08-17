@@ -7,6 +7,7 @@
 //
 
 #import "ProfileController.h"
+
 #import "MRProgress.h"
 #import "YMCommon.h"
 #import "YMProfileDeleage.h"
@@ -15,6 +16,7 @@
 #import "YMUITapGestureRecognizer.h"
 #import <ImageLoader/UIImageView+ImageLoader.h>
 #import "ContactController.h"
+#import "SettingController.h"
 @interface ProfileController()
 @property NSString* image ;
 @property MRProgressOverlayView* progress ;
@@ -35,14 +37,20 @@
 @synthesize lblName;
 @synthesize imgAvatar;
 @synthesize currentSelectID;
+@synthesize lblGroup;
 
-- (void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBarHidden = false;
-}
+
 
 - (void)viewDidLoad {
-    
+     self.navigationController.navigationBarHidden = false;
     [super viewDidLoad];
+    
+  
+    
+    UIBarButtonItem *barbtn=[[UIBarButtonItem alloc] initWithImage:nil style:UIBarButtonItemStyleDone target:self action:@selector(searchprogram:)];
+    [barbtn setImage:[UIImage imageNamed:@"setting_icon"]];
+    self.navigationItem.rightBarButtonItem =barbtn;
+    
     
     arrary = [[NSArray alloc]initWithObjects:[YMCommon hexStringToColor:@"CF0001"],[YMCommon hexStringToColor:@"71aa00" ],[YMCommon hexStringToColor:@"f2931b" ],[YMCommon hexStringToColor: @"00b7ee" ], nil];
     
@@ -58,7 +66,7 @@
     
     NSString* job  =  [userDefaults valueForKey:@"ym_customer_job"];
     
-    NSString* grade  =  [userDefaults valueForKey:@"ym_customer_xmpp"];
+    NSString* grade  =  [userDefaults valueForKey:@"ym_customer_grade"];
     
     image  =  [userDefaults valueForKey:@"ym_customer_img"];
     
@@ -71,13 +79,24 @@
     
     [self.imgAvatar setImageWithURL:[NSURL URLWithString:image]];
     
-    self.lblName.text =truename;
+    self.lblName.text =[NSString stringWithFormat:@"欢迎您,%@",  truename];
+     self.lblGroup.text=[NSString stringWithFormat:@"部门 :%@",  grade]; ;
+    self.lblJob.text=[NSString stringWithFormat:@"职务 :%@",  job]; ;
     
-    self.lblJob.text=grade ;
     
+    self.navigationItem.title =@"移民安置规划中心";
     [self loadUI];
     
     
+    
+}
+
+-(IBAction) searchprogram:(id)sender
+{
+
+    SettingController *ickImageViewController =
+    [self.storyboard instantiateViewControllerWithIdentifier:@"setting"];
+    [self.navigationController pushViewController:ickImageViewController animated:true];
     
 }
 
@@ -89,8 +108,10 @@
     {
         ContactController *ickImageViewController =
         [self.storyboard instantiateViewControllerWithIdentifier:@"contact"];
+        
+        ickImageViewController.Title = tap.Title;
         // [self presentViewController:ickImageViewController animated:YES completion:nil];
-        //  ickImageViewController.ID = recognizer.view.tag;
+       // self.navigationController.title = tap.Title ;
         [self.navigationController pushViewController:ickImageViewController animated:true];
     }
     else
@@ -100,20 +121,25 @@
         {
             TypeListController *ickImageViewController =
             [self.storyboard instantiateViewControllerWithIdentifier:@"project"];
+              ickImageViewController.Title = tap.Title;
             // [self presentViewController:ickImageViewController animated:YES completion:nil];
             ickImageViewController.ID = recognizer.view.tag;
             
-            
+          //  self.navigationController.title = tap.Title;
+
             [self.navigationController pushViewController:ickImageViewController animated:true];
         }
         else
         {
             TypeListController *ickImageViewController =
             [self.storyboard instantiateViewControllerWithIdentifier:@"typelist"];
+            ickImageViewController.Title = tap.Title;
+
             // [self presentViewController:ickImageViewController animated:YES completion:nil];
             ickImageViewController.ID = recognizer.view.tag;
             
-            
+           // self.navigationController.title = tap.Title;
+
             
             [self.navigationController pushViewController:ickImageViewController animated:true];
         }
@@ -185,7 +211,7 @@
                 
                 YMUITapGestureRecognizer* singleRecognizer; singleRecognizer =
                 [[YMUITapGestureRecognizer alloc]initWithTarget:(self) action:@selector(SingleTap:)];
-                
+                singleRecognizer.Title = entity.CateName;
                 
                 view.tag = entity.Id;
                 singleRecognizer.Expend = entity.Expand;

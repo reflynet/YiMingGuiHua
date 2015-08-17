@@ -11,4 +11,5 @@
 @implementation YMUITapGestureRecognizer
 @synthesize Table;
 @synthesize Expend;
+@synthesize Title;
 @end

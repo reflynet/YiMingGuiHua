@@ -103,15 +103,17 @@ compete :(void (^)(YMCustomerEntity*))compete
     if ([currentElement isEqualToString:@"image"]) {
         result.Job = str;
     }
-    
     if ([currentElement isEqualToString:@"modelid"]) {
         result.Name = str;
     }
     if ([currentElement isEqualToString:@"parentid"]) {
         result.GradeId = [str intValue];
     }
-    if ([currentElement isEqualToString:@"catname"]) {
+    if ([currentElement isEqualToString:@"gradename"]) {
         result.GradeName = str;
+    }
+    if ([currentElement isEqualToString:@"job"]) {
+        result.Job = str;
     }
     if ([currentElement isEqualToString:@"xmppname"]) {
         result.XmppName = str;
