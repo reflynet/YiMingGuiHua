@@ -39,7 +39,7 @@
         viewD.layer.shadowOpacity = 0.5;//不透明度
         viewD.layer.shadowRadius = 10.0;//半径
         
-        
+        self.navigationItem.title =@"用户资料";
         NSString* image =  [[YMCommon getServer] stringByAppendingString: member.FacePhoto ];
         
         self.imgHead.layer.cornerRadius = self.imgHead.frame.size.width / 2;

@@ -50,6 +50,7 @@
     self._linkManContrller.currentNav = self.navigationController;
     self._contactController.currentNav = self.navigationController;
     self._linkManContrller.currentNavItem = self.navigationItem;
+    self._contactController.currentNavItem = self.navigationItem;
 
     [super viewDidLoad];
  

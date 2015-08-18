@@ -142,6 +142,7 @@
 
             
             [self.navigationController pushViewController:ickImageViewController animated:true];
+            
         }
     }
     

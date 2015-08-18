@@ -26,7 +26,7 @@
     self.navigationController.navigationBarHidden = false;
     self.tableView.dataSource =self;
     self.tableView.delegate = self;
-
+self.navigationItem.title =@"联系人";
     YMContactCustomerDeleteage *delete = [[YMContactCustomerDeleteage alloc]init];
     
     tableView.rowHeight = 80.f;

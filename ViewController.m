@@ -172,6 +172,7 @@
             
              //self.performSegueWithIdentifier("profile", sender: nil)
             [self removeFromParentViewController];
+            [self dismissViewControllerAnimated:true completion:nil];
                //  self.dismissViewControllerAnimated(true, completion: nil)
 
             
@@ -186,12 +187,6 @@
             [alert show];}
         
     }];
-    
-    
-    
-    
-    
-    
-    
+
 }
 @end

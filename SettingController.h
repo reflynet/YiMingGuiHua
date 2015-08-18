@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellResetPwd;
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellCear;
 
 @end
