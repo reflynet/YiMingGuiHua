@@ -17,6 +17,7 @@
 #import "YMEntityListController.h"
 #import "EntityListController.h"
 #import "YMSelectProjectDeleage.h"
+#import "DetialViewController.h"
 @implementation EntityListController
 @synthesize source;
 @synthesize ID;
@@ -124,8 +125,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    YMChannelItem* current = [ self.source objectAtIndex:indexPath.row];
+   
+    DetialViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailView"];
     
-    EntityListController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"EntityList"];
+    controller.ID = current.Id;
+    controller.Table= self.Table;
+    
+
+    
     // [self presentViewController:ickImageViewController animated:YES completion:nil];
     
     [self.navigationController pushViewController:controller animated:true];

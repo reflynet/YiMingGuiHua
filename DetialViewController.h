@@ -18,4 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblBaomidengji;
 @property (weak, nonatomic) IBOutlet UILabel *lblYiyuerenyuan;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
+
+@property int ID;
+@property NSString* Table;
 @end

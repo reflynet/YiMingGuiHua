@@ -62,6 +62,12 @@ compete:(void (^)(NSMutableArray *arr)) compete;
     if ([currentElement isEqualToString:@"id"]) {
         entity.Id = [str intValue];
     }
+    if ([currentElement isEqualToString:@"title"]) {
+        entity.Wenjianbiaoti = str;
+    }
+    if ([currentElement isEqualToString:@"inputtime"]) {
+        entity.Fawenshijian = str;
+    }
     }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName
