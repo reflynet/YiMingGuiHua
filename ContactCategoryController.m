@@ -130,10 +130,11 @@
         }];
     }
     else{
-            [YMCommon setBackBtn:self.navigationItem];
+            [YMCommon setBackBtn:self.currentNavItem];
         ContactCustomerController* nextC =
         [self.storyboard instantiateViewControllerWithIdentifier:@"ContactCustomer"];
         nextC.ID = entity.ID;
+        
         [self.currentNav pushViewController:nextC animated:true];
         
         

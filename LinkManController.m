@@ -21,7 +21,7 @@
 @synthesize data;
 @synthesize keys;
 @synthesize currentNavItem;
-
+@synthesize orgdata;
 -(void)loadView
 {
     [super loadView];
@@ -30,7 +30,7 @@
     progress.tintColor = [YMCommon hexStringToColor:@"CF0001"];
     progress.mode =MRProgressOverlayViewModeIndeterminate;
     progress.titleLabelText = @"加载中...";
-    
+    self.tableView.sectionIndexColor = [UIColor blueColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = 80.f;
@@ -44,26 +44,18 @@
     
     YMContactDeleage* del = [[YMContactDeleage alloc]init];
     [del getData:^(NSMutableArray *arr) {
-        data = [del convertToDictionaryByResult:arr];
+        
+        orgdata = [del convertToDictionaryByResult:arr];
+        
+        
+        [self resetData :@""];
         [progress dismiss:true];
-        NSEnumerator * enumeratorKey = [data keyEnumerator];
-        
-        //快速枚举遍历所有KEY的值
-        for (NSObject *object in enumeratorKey) {
-            [keys addObject:object];
-        }
-        [keys sortUsingComparator:^NSComparisonResult(__strong id obj1,__strong id obj2){
-            NSString *str1=(NSString *)obj1;
-            NSString *str2=(NSString *)obj2;
-            return [str1 compare:str2];
-        }];
-        
-        [self.tableView reloadData];
         
     }];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [tableView setContentInset:tableView.contentInset];
+    self.searchBar.delegate = self;
     
     
     
@@ -102,9 +94,9 @@
     cell.imgAvatar.clipsToBounds = YES;
     cell.imgAvatar.layer.borderWidth = 1.0f;
     cell.imgAvatar.layer.borderColor = [UIColor whiteColor].CGColor;
- 
+    
     [cell.imgAvatar setImageWithURL:[NSURL URLWithString:image]];
-
+    
     
     return  cell;
     
@@ -137,6 +129,53 @@
     [self.currentNav pushViewController:controller animated:true];
     
 }
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText;
+{
+    [self resetData:searchText];
+    
+}
+
+-(void)resetData:(NSString*) key
+{
+    data = [[NSMutableDictionary alloc]init];
+    keys = [[NSMutableArray alloc]init];
+    
+    NSEnumerator * enumeratorKey = [orgdata keyEnumerator];
+    
+    //快速枚举遍历所有KEY的值
+    for (NSObject *object in enumeratorKey) {
+        
+        [data setObject:[[NSMutableArray alloc]init] forKey:object];
+        
+        for (int i =0 ;i<[orgdata[object] count];i++) {
+            YMContactEntity* _t =orgdata[object][i];
+ 
+            if ([key isEqualToString:@""] ||[_t.RealName rangeOfString:key].location != NSNotFound)
+           {
+                [data[object] addObject:_t];
+           }
+        }
+        if([data[object] count]>0)
+        {
+            [keys addObject:object];
+
+        }
+        
+    }
+    
+    
+    
+    [keys sortUsingComparator:^NSComparisonResult(__strong id obj1,__strong id obj2){
+        NSString *str1=(NSString *)obj1;
+        NSString *str2=(NSString *)obj2;
+        return [str1 compare:str2];
+    }];
+    
+    [self.tableView reloadData];
+    
+}
+
 
 
 @end

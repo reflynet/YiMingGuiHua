@@ -13,14 +13,14 @@
 @end
 
 @implementation DetialViewController
-
-
+@synthesize ID;
+@synthesize Table;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     
        YMDetailDelegate*  detailDelegate = [[YMDetailDelegate alloc]init];
-    [detailDelegate getData:1 m:@"article" compete:^(NSMutableArray *arr) {
+    [detailDelegate getData:ID m:Table compete:^(NSMutableArray *arr) {
     
     }];
 }

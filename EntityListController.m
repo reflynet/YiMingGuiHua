@@ -17,6 +17,7 @@
 #import "YMEntityListController.h"
 #import "EntityListController.h"
 #import "YMSelectProjectDeleage.h"
+#import "DetialViewController.h"
 @implementation EntityListController
 @synthesize source;
 @synthesize ID;
@@ -36,12 +37,26 @@
     //{
     searchContent = txtSearch.text;
     [self doneLoadingTableViewData];
-    
+  
 }
 
+-(void)noData
+{
+    txtSearch.hidden = true;
+    self.tableVIew.hidden = true;
+    
+    CGRect initRect = CGRectMake(self.view.bounds.size.width/2-40, self.view.bounds.size.height/2-10,80.0f, 20.0f);
+    
+    UILabel* lblNoData = [[UILabel alloc]initWithFrame:initRect];
+    lblNoData.text = @"暂无数据";
+    [self.view addSubview:lblNoData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
     self.navigationItem.title = Title;
     if(self.Table == @"project")
     {
@@ -124,8 +139,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    YMChannelItem* current = [ self.source objectAtIndex:indexPath.row];
+   
+    DetialViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailView"];
     
-    EntityListController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"EntityList"];
+    controller.ID = current.Id;
+    controller.Table= self.Table;
+    
+
+    
     // [self presentViewController:ickImageViewController animated:YES completion:nil];
     
     [self.navigationController pushViewController:controller animated:true];
@@ -207,12 +229,15 @@
             [self.tableVIew reloadData];
             [self layoutSubviews];
             
-            if([arr count] <10)
+            if([arr count] == 0)
+            {
+             [self noData];
+            }
+            else if([arr count] <10)
             {
                 [_loadMoreTableFooterView setState:EGOPullLoaded];
                 self.IsLoadedAll = true;
             }
-            
             
         } ];
     }
@@ -229,8 +254,10 @@
             
             [self.tableVIew reloadData];
             [self layoutSubviews];
-            
-            if([arr count] <10)
+            if([arr count] == 0)
+            {
+                [self noData];
+            }else if([arr count] <10)
             {
                 [_loadMoreTableFooterView setState:EGOPullLoaded];
                 self.IsLoadedAll = true;
