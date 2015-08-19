@@ -93,7 +93,7 @@
 
 -(IBAction) searchprogram:(id)sender
 {
-
+ [YMCommon setBackBtn:self.navigationItem];
     SettingController *ickImageViewController =
     [self.storyboard instantiateViewControllerWithIdentifier:@"setting"];
     [self.navigationController pushViewController:ickImageViewController animated:true];

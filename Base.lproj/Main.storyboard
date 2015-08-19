@@ -663,9 +663,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="bvW-Gx-53P" kind="push" id="N3C-v8-E5c"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -679,6 +676,7 @@
                     <connections>
                         <outlet property="cellCear" destination="agQ-lp-jn1" id="voy-LZ-k6I"/>
                         <outlet property="cellResetPwd" destination="82G-JZ-Jog" id="6LK-QJ-Ehv"/>
+                        <segue destination="bvW-Gx-53P" kind="push" id="uKp-4q-oxS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Hd-cr-JAQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

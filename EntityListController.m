@@ -37,12 +37,26 @@
     //{
     searchContent = txtSearch.text;
     [self doneLoadingTableViewData];
-    
+  
 }
 
+-(void)noData
+{
+    txtSearch.hidden = true;
+    self.tableVIew.hidden = true;
+    
+    CGRect initRect = CGRectMake(self.view.bounds.size.width/2-40, self.view.bounds.size.height/2-10,80.0f, 20.0f);
+    
+    UILabel* lblNoData = [[UILabel alloc]initWithFrame:initRect];
+    lblNoData.text = @"暂无数据";
+    [self.view addSubview:lblNoData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
     self.navigationItem.title = Title;
     if(self.Table == @"project")
     {
@@ -215,12 +229,15 @@
             [self.tableVIew reloadData];
             [self layoutSubviews];
             
-            if([arr count] <10)
+            if([arr count] == 0)
+            {
+             [self noData];
+            }
+            else if([arr count] <10)
             {
                 [_loadMoreTableFooterView setState:EGOPullLoaded];
                 self.IsLoadedAll = true;
             }
-            
             
         } ];
     }
@@ -237,8 +254,10 @@
             
             [self.tableVIew reloadData];
             [self layoutSubviews];
-            
-            if([arr count] <10)
+            if([arr count] == 0)
+            {
+                [self noData];
+            }else if([arr count] <10)
             {
                 [_loadMoreTableFooterView setState:EGOPullLoaded];
                 self.IsLoadedAll = true;
