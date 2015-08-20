@@ -18,6 +18,9 @@
 #import "EntityListController.h"
 #import "YMSelectProjectDeleage.h"
 #import "DetialViewController.h"
+#import "FileDetailViewController.h"
+#import "ProjectDetailViewController.h"
+
 @implementation EntityListController
 @synthesize source;
 @synthesize ID;
@@ -138,7 +141,41 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if([self.Table isEqualToString:@"article"])
+    {
+        YMChannelItem* current = [ self.source objectAtIndex:indexPath.row];
+        
+        FileDetailViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FileDetailView"];
+        
+        controller.ID = current.Id;
+        controller.Table= self.Table;
+        
+        
+        
+        // [self presentViewController:ickImageViewController animated:YES completion:nil];
+        
+        [self.navigationController pushViewController:controller animated:true];
+    }
+    else if([self.Table isEqualToString:@"project"])
+    {
+        
+        
+        YMChannelItem* current = [ self.source objectAtIndex:indexPath.row];
+        
+        ProjectDetailViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ProjectDetailView"];
+        
+        controller.ID = current.Id;
     
+        
+        
+        
+        // [self presentViewController:ickImageViewController animated:YES completion:nil];
+        
+        [self.navigationController pushViewController:controller animated:true];
+
+    }
+    else
+    {
     YMChannelItem* current = [ self.source objectAtIndex:indexPath.row];
    
     DetialViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailView"];
@@ -152,7 +189,7 @@
     
     [self.navigationController pushViewController:controller animated:true];
     
-    
+}
 }
 
 
