@@ -25,7 +25,7 @@
 
 -(void)getData: (int) entityid
 m:(NSString*) m
-compete:(void (^)(NSMutableArray *arr)) compete;
+compete:(void (^)(YMEntityDetail* arr)) compete;
 {
  result = [[NSMutableArray alloc]init];
     
@@ -49,7 +49,7 @@ compete:(void (^)(NSMutableArray *arr)) compete;
         [parser parse];
         
         if (compete) {
-            compete(result);
+            compete(entity);
         }
     } failure:^(AFHTTPRequestOperation *operation,NSError *error) {}];
 }
@@ -62,13 +62,29 @@ compete:(void (^)(NSMutableArray *arr)) compete;
     if ([currentElement isEqualToString:@"id"]) {
         entity.Id = [str intValue];
     }
-    if ([currentElement isEqualToString:@"title"]) {
+    else if ([currentElement isEqualToString:@"title"]) {
         entity.Wenjianbiaoti = str;
     }
-    if ([currentElement isEqualToString:@"inputtime"]) {
+    else if ([currentElement isEqualToString:@"inputtime"]) {
         entity.Fawenshijian = str;
     }
+    else if([currentElement isEqualToString:@"content"]){
+         entity.Content = str;
     }
+    else if([currentElement isEqualToString:@"creatfiletime"]){
+         entity.Fawendanwei = str;
+    }
+    else if([currentElement isEqualToString:@"fromunits"]){
+         entity.Fawendanwei = str;
+    }
+    else if([currentElement isEqualToString:@"filetitle"]){
+        entity.Juanzong = str;
+    }else if([currentElement isEqualToString:@"registernumber"]){
+        entity.Dengjihao = str;
+    }else if([currentElement isEqualToString:@"isdegree"]){
+        entity.Baomidengji = str;
+    }
+}
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName
     attributes:(NSDictionary *)attributeDict

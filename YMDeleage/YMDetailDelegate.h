@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "YMEntityDetail.h"
 @interface YMDetailDelegate : NSObject
--(void)getData : (int)entityid m:(NSString*)m compete:(void (^)(NSMutableArray *arr))compete;
+-(void)getData : (int)entityid m:(NSString*)m compete:(void (^)(YMEntityDetail* arr))compete;
 @end

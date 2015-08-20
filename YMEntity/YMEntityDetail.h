@@ -23,6 +23,7 @@
 @property   NSString* Wenjianbiaoti;
 @property   NSString* Nibanyijian;
 @property   NSString* Yiyuerenyuan;
+@property   NSString* Content;
 
 
 @end

@@ -8,6 +8,8 @@
 
 #import "DetialViewController.h"
 #import "YMDetailDelegate.h"
+#import "YMEntityDetail.h"
+
 @interface DetialViewController ()
 
 @end
@@ -20,8 +22,18 @@
     
     
        YMDetailDelegate*  detailDelegate = [[YMDetailDelegate alloc]init];
-    [detailDelegate getData:ID m:Table compete:^(NSMutableArray *arr) {
-    
+    [detailDelegate getData:ID m:Table compete:^(YMEntityDetail* arr) {
+        self.lblName.text = arr.Juanzong;
+        self.lblBianhao.text = arr.Wenjianbianhao;
+        self.lblDanwei.text= arr.Fawendanwei;
+        self.lblShijian.text= arr.Fawenshijian;
+        self.lblWenjianbiaoti.text= arr.Wenjianbiaoti;
+        self.lblBaomidengji.text=arr.Baomidengji;
+        self.lblDengjihao.text=arr.Dengjihao;
+        self.lblNibanyijian.text=arr.Nibanyijian;
+ 
+        
+        [self.lblWeb loadHTMLString:arr.Content baseURL:nil];
     }];
 }
 

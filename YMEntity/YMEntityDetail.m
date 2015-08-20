@@ -22,5 +22,6 @@
 @synthesize  Wenjianbiaoti;
 @synthesize  Nibanyijian;
 @synthesize  Yiyuerenyuan;
+@synthesize  Content;
 
 @end

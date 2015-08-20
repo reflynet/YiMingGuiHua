@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DetialViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UILabel *lblNibanyijian;
 @property (weak, nonatomic) IBOutlet UILabel *lblWenjianbiaoti;
 @property (weak, nonatomic) IBOutlet UILabel *lblShijian;
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblYiyuerenyuan;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 
+@property (weak, nonatomic) IBOutlet UIWebView *lblWeb;
 @property int ID;
 @property NSString* Table;
 @end
