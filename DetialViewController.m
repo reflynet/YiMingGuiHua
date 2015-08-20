@@ -9,7 +9,8 @@
 #import "DetialViewController.h"
 #import "YMDetailDelegate.h"
 #import "YMEntityDetail.h"
-
+#import "YMReadUser.h"
+#import "YMReadUserDelegate.h"
 @interface DetialViewController ()
 
 @end
@@ -19,7 +20,7 @@
 @synthesize Table;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.viewRead.hidden = TRUE;
     
        YMDetailDelegate*  detailDelegate = [[YMDetailDelegate alloc]init];
     [detailDelegate getData:ID m:Table compete:^(YMEntityDetail* arr) {
@@ -34,6 +35,31 @@
  
         
         [self.lblWeb loadHTMLString:arr.Content baseURL:nil];
+    }];
+    
+    
+    
+    YMReadUserDelegate* readuserDelegate = [[YMReadUserDelegate alloc]init];
+    [readuserDelegate getData:ID compete:^(NSMutableArray *arr) {
+    
+        NSString* users= [[NSString alloc] init];
+       for(YMReadUser* user in arr)
+       {
+            users =[users stringByAppendingString:user.username];
+           users =[users stringByAppendingString:@" "];
+           
+           
+           NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+           
+           //存储时，除NSNumber类型使用对应的类型意外，其他的都是使用setObject:forKey:
+           NSString* truename  =  [userDefaults valueForKey:@"ym_customer_truename"];
+           if([truename isEqualToString:user.username])
+           {
+               self.viewRead.hidden = FALSE;
+           }
+       }
+    
+        self.lblYiyuerenyuan.text = users;
     }];
 }
 

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblBaomidengji;
 @property (weak, nonatomic) IBOutlet UILabel *lblYiyuerenyuan;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
+@property (weak, nonatomic) IBOutlet UIView *viewRead;
 
 @property (weak, nonatomic) IBOutlet UIWebView *lblWeb;
 @property int ID;
